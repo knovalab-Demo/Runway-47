@@ -43,7 +43,8 @@
       overflow-x: hidden;
     }
 
-    body.menu-open {
+    body.menu-open,
+    body.modal-open {
       overflow: hidden;
     }
 
@@ -90,22 +91,6 @@
       background: linear-gradient(90deg, transparent, var(--gold));
     }
 
-    .section-title {
-      margin-top: 16px;
-      color: var(--white);
-      font-family: var(--serif);
-      font-size: clamp(2.2rem, 6vw, 4.8rem);
-      font-weight: 600;
-      line-height: 0.98;
-    }
-
-    .section-copy {
-      max-width: 650px;
-      margin-top: 22px;
-      color: var(--muted);
-      font-size: clamp(0.96rem, 1.5vw, 1.04rem);
-    }
-
     .btn {
       position: relative;
       display: inline-flex;
@@ -122,7 +107,7 @@
       letter-spacing: 0.13em;
       text-transform: uppercase;
       cursor: pointer;
-      transition: transform 500ms var(--ease), border-color 500ms var(--ease), background 500ms var(--ease), color 500ms var(--ease), box-shadow 500ms var(--ease);
+      transition: transform 500ms var(--ease), border-color 500ms var(--ease), background 500ms var(--ease), color 500ms var(--ease), box-shadow 500ms var(--ease), opacity 300ms ease;
       overflow: hidden;
     }
 
@@ -150,6 +135,12 @@
 
     .btn:active {
       transform: translateY(-1px) scale(0.99);
+    }
+
+    .btn:disabled {
+      cursor: wait;
+      opacity: 0.68;
+      transform: none;
     }
 
     .btn-gold {
@@ -616,6 +607,120 @@
       margin-top: 10px;
     }
 
+    .form-note {
+      display: none;
+      color: rgba(245, 241, 234, 0.68);
+      font-size: 0.84rem;
+      text-align: center;
+    }
+
+    .form-note.visible {
+      display: block;
+    }
+
+    .success-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: grid;
+      place-items: center;
+      padding: 22px;
+      background: rgba(4, 4, 4, 0.74);
+      backdrop-filter: blur(12px);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 380ms ease, visibility 380ms ease;
+    }
+
+    .success-modal.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .success-card {
+      position: relative;
+      width: min(520px, 100%);
+      padding: clamp(30px, 6vw, 48px);
+      border: 1px solid rgba(200, 155, 91, 0.38);
+      border-radius: 28px;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(200, 155, 91, 0.22), transparent 38%),
+        linear-gradient(180deg, rgba(24, 22, 20, 0.98), rgba(8, 8, 8, 0.98));
+      box-shadow:
+        0 0 70px rgba(200, 155, 91, 0.22),
+        0 30px 90px rgba(0, 0, 0, 0.58);
+      text-align: center;
+      transform: translateY(24px) scale(0.96);
+      transition: transform 520ms var(--ease);
+      overflow: hidden;
+    }
+
+    .success-modal.active .success-card {
+      transform: translateY(0) scale(1);
+    }
+
+    .success-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(110deg, transparent, rgba(245, 241, 234, 0.08), transparent);
+      transform: translateX(-130%);
+      animation: modalSheen 1800ms 260ms var(--ease) forwards;
+      pointer-events: none;
+    }
+
+    .success-mark {
+      display: grid;
+      place-items: center;
+      width: 70px;
+      height: 70px;
+      margin: 0 auto 24px;
+      border: 1px solid rgba(200, 155, 91, 0.66);
+      border-radius: 50%;
+      background: rgba(200, 155, 91, 0.12);
+      color: var(--gold);
+      font-size: 2.2rem;
+      line-height: 1;
+      box-shadow: 0 0 42px rgba(200, 155, 91, 0.3);
+    }
+
+    .success-card h2 {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 6vw, 3.2rem);
+      font-weight: 600;
+      line-height: 1;
+    }
+
+    .success-card p {
+      margin-top: 18px;
+      color: rgba(245, 241, 234, 0.68);
+      font-size: 0.98rem;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      display: grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      border: 1px solid rgba(200, 155, 91, 0.24);
+      border-radius: 50%;
+      background: rgba(10, 10, 10, 0.42);
+      color: var(--white);
+      cursor: pointer;
+      transition: border-color 300ms ease, color 300ms ease, transform 300ms ease;
+    }
+
+    .modal-close:hover,
+    .modal-close:focus-visible {
+      border-color: rgba(200, 155, 91, 0.72);
+      color: var(--gold);
+      transform: rotate(90deg);
+      outline: none;
+    }
+
     .reveal {
       opacity: 0;
       transform: translateY(34px);
@@ -734,6 +839,12 @@
       100% {
         transform: translate3d(48px, -90px, 0);
         opacity: 0;
+      }
+    }
+
+    @keyframes modalSheen {
+      to {
+        transform: translateX(130%);
       }
     }
 
@@ -892,28 +1003,36 @@
             <p>Submit your preferred details and our hospitality team will confirm availability with care.</p>
           </div>
 
-          <form class="luxury-form" action="https://formsubmit.co/developer.knovalab@gmail.com" method="POST">
+          <form class="luxury-form" id="reservationForm" action="https://formsubmit.co/ajax/developer.knovalab@gmail.com" method="POST">
             <input type="hidden" name="_captcha" value="false" />
-            <input type="hidden" name="_subject" value="RUNWAY47 Reservation Request" />
-            <input type="hidden" name="_template" value="table" />
-            <input type="hidden" name="_next" value="https://runway47.com/reservation.html" />
+            <input type="hidden" name="_subject" id="emailSubject" value="NEW ORDER - RUNWAY47 Reservation Request" />
+            <input type="hidden" name="_template" value="box" />
+            <input type="hidden" name="_next" value="https://knovalab-demo.github.io/Runway-47/reservation.html" />
+            <input type="hidden" name="_autoresponse" value="Thank you for your reservation request at RUNWAY47. Someone from our support team will reach out within 24 hours." />
+            <input type="hidden" name="_replyto" id="replyTo" value="" />
+            <input type="hidden" name="Email Title" value="NEW ORDER" />
+            <input type="hidden" name="Email Subtitle" value="Please accept or reject the following reservation" />
+            <input type="hidden" name="Accept Reservation" value="https://knovalab-demo.github.io/Runway-47/accept.html" />
+            <input type="hidden" name="Reject Reservation" value="https://knovalab-demo.github.io/Runway-47/reject.html" />
+            <input type="hidden" name="Footer Message" value="Someone from our support team will reach out within 24 hours." />
+            <input type="hidden" name="RUNWAY47 HTML Email" id="htmlEmailTemplate" value="" />
 
             <div class="field-row">
               <div class="field">
                 <label for="fullName">Full Name</label>
-                <input id="fullName" name="Full Name" type="text" placeholder="Your full name" required />
+                <input id="fullName" name="Full Name" type="text" placeholder="Your full name" autocomplete="name" required />
               </div>
 
               <div class="field">
                 <label for="email">Email</label>
-                <input id="email" name="Email" type="email" placeholder="you@example.com" required />
+                <input id="email" name="Email" type="email" placeholder="you@example.com" autocomplete="email" required />
               </div>
             </div>
 
             <div class="field-row">
               <div class="field">
                 <label for="phone">Phone Number</label>
-                <input id="phone" name="Phone Number" type="tel" placeholder="+91 00000 00000" required />
+                <input id="phone" name="Phone Number" type="tel" placeholder="+91 00000 00000" autocomplete="tel" required />
               </div>
 
               <div class="field">
@@ -948,14 +1067,25 @@
               <textarea id="requests" name="Special Requests" placeholder="Occasion, seating preference, dietary notes, or hospitality requests."></textarea>
             </div>
 
+            <p class="form-note" id="formNote" role="status" aria-live="polite"></p>
+
             <div class="form-actions">
-              <button class="btn btn-gold" type="submit">Reserve Now</button>
+              <button class="btn btn-gold" id="submitButton" type="submit">Reserve Now</button>
             </div>
           </form>
         </div>
       </div>
     </section>
   </main>
+
+  <div class="success-modal" id="successModal" role="dialog" aria-modal="true" aria-labelledby="successTitle" aria-hidden="true">
+    <div class="success-card">
+      <button class="modal-close" id="modalClose" type="button" aria-label="Close success message">×</button>
+      <div class="success-mark" aria-hidden="true">✓</div>
+      <h2 id="successTitle">Reservation Request Sent Successfully</h2>
+      <p>Someone from our support team will reach out within 24 hours.</p>
+    </div>
+  </div>
 
   <footer class="footer">
     <div class="container">
@@ -1009,6 +1139,16 @@
     const revealItems = document.querySelectorAll(".reveal");
     const intro = document.getElementById("intro");
     const dateInput = document.getElementById("date");
+    const reservationForm = document.getElementById("reservationForm");
+    const submitButton = document.getElementById("submitButton");
+    const formNote = document.getElementById("formNote");
+    const successModal = document.getElementById("successModal");
+    const modalClose = document.getElementById("modalClose");
+    const emailSubject = document.getElementById("emailSubject");
+    const replyTo = document.getElementById("replyTo");
+    const htmlEmailTemplate = document.getElementById("htmlEmailTemplate");
+
+    let successTimer;
 
     const setHeaderState = () => {
       header.classList.toggle("scrolled", window.scrollY > 24);
@@ -1025,6 +1165,159 @@
       menuToggle.setAttribute("aria-label", "Open navigation menu");
     };
 
+    const showFormNote = (message) => {
+      formNote.textContent = message;
+      formNote.classList.add("visible");
+    };
+
+    const hideFormNote = () => {
+      formNote.textContent = "";
+      formNote.classList.remove("visible");
+    };
+
+    const escapeHtml = (value) => {
+      return String(value || "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    };
+
+    const formatDate = (value) => {
+      if (!value) {
+        return "";
+      }
+
+      const date = new Date(`${value}T00:00:00`);
+
+      return date.toLocaleDateString("en-IN", {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric"
+      });
+    };
+
+    const formatTime = (value) => {
+      if (!value) {
+        return "";
+      }
+
+      const [hours, minutes] = value.split(":");
+      const date = new Date();
+      date.setHours(Number(hours), Number(minutes));
+
+      return date.toLocaleTimeString("en-IN", {
+        hour: "numeric",
+        minute: "2-digit",
+        hour12: true
+      });
+    };
+
+    const buildEmailTemplate = () => {
+      const fullName = escapeHtml(document.getElementById("fullName").value.trim());
+      const email = escapeHtml(document.getElementById("email").value.trim());
+      const phone = escapeHtml(document.getElementById("phone").value.trim());
+      const guests = escapeHtml(document.getElementById("guests").value);
+      const date = escapeHtml(formatDate(document.getElementById("date").value));
+      const time = escapeHtml(formatTime(document.getElementById("time").value));
+      const requests = escapeHtml(document.getElementById("requests").value.trim() || "None provided");
+
+      replyTo.value = email;
+      emailSubject.value = `NEW ORDER - RUNWAY47 Reservation - ${fullName}`;
+
+      htmlEmailTemplate.value = `
+<table width="100%" cellpadding="0" cellspacing="0" border="0" role="presentation" style="margin:0;padding:0;background:#0a0a0a;font-family:Arial,Helvetica,sans-serif;color:#f5f1ea;">
+  <tr>
+    <td align="center" style="padding:40px 14px;">
+      <table width="650" cellpadding="0" cellspacing="0" border="0" role="presentation" style="width:100%;max-width:650px;background:#111111;border:1px solid #C89B5B;border-radius:18px;overflow:hidden;">
+        <tr>
+          <td align="center" style="padding:48px 32px;background:#0f0f0f;">
+            <div style="font-family:Georgia,'Times New Roman',serif;font-size:42px;line-height:1;letter-spacing:6px;color:#C89B5B;font-weight:700;">NEW ORDER</div>
+            <div style="margin-top:18px;font-size:14px;line-height:1.7;color:#d8d2c7;">Please accept or reject the following reservation</div>
+          </td>
+        </tr>
+        <tr>
+          <td style="height:1px;background:#C89B5B;opacity:0.4;"></td>
+        </tr>
+        <tr>
+          <td style="padding:42px 36px;">
+            <div style="font-family:Georgia,'Times New Roman',serif;font-size:22px;color:#C89B5B;font-weight:600;margin-bottom:22px;">Reservation Details</div>
+            <table width="100%" cellpadding="0" cellspacing="0" border="0" role="presentation">
+              <tr>
+                <td style="padding:12px 0;color:#9f9688;font-size:14px;width:44%;">Customer Name</td>
+                <td style="padding:12px 0;color:#ffffff;font-size:15px;font-weight:600;">${fullName}</td>
+              </tr>
+              <tr>
+                <td style="padding:12px 0;color:#9f9688;font-size:14px;">Email</td>
+                <td style="padding:12px 0;color:#ffffff;font-size:15px;font-weight:600;">${email}</td>
+              </tr>
+              <tr>
+                <td style="padding:12px 0;color:#9f9688;font-size:14px;">Phone Number</td>
+                <td style="padding:12px 0;color:#ffffff;font-size:15px;font-weight:600;">${phone}</td>
+              </tr>
+              <tr>
+                <td style="padding:12px 0;color:#9f9688;font-size:14px;">Number of Guests</td>
+                <td style="padding:12px 0;color:#ffffff;font-size:15px;font-weight:600;">${guests}</td>
+              </tr>
+            </table>
+            <div style="height:1px;background:#2b2b2b;margin:34px 0;"></div>
+            <div style="font-family:Georgia,'Times New Roman',serif;font-size:22px;color:#C89B5B;font-weight:600;margin-bottom:22px;">Reservation Request Details</div>
+            <table width="100%" cellpadding="0" cellspacing="0" border="0" role="presentation">
+              <tr>
+                <td style="padding:12px 0;color:#9f9688;font-size:14px;width:44%;">Date</td>
+                <td style="padding:12px 0;color:#ffffff;font-size:15px;font-weight:600;">${date}</td>
+              </tr>
+              <tr>
+                <td style="padding:12px 0;color:#9f9688;font-size:14px;">Time</td>
+                <td style="padding:12px 0;color:#ffffff;font-size:15px;font-weight:600;">${time}</td>
+              </tr>
+              <tr>
+                <td style="padding:12px 0;color:#9f9688;font-size:14px;vertical-align:top;">Special Requests</td>
+                <td style="padding:12px 0;color:#ffffff;font-size:15px;font-weight:600;line-height:1.6;">${requests}</td>
+              </tr>
+            </table>
+            <table width="100%" cellpadding="0" cellspacing="0" border="0" role="presentation" style="margin-top:42px;">
+              <tr>
+                <td align="center" style="padding:0 0 12px;">
+                  <a href="https://knovalab-demo.github.io/Runway-47/accept.html" style="display:inline-block;width:190px;max-width:100%;margin:6px;padding:16px 20px;background:#C89B5B;color:#111111;text-decoration:none;border-radius:999px;font-size:14px;font-weight:700;letter-spacing:1.5px;text-align:center;">ACCEPT</a>
+                  <a href="https://knovalab-demo.github.io/Runway-47/reject.html" style="display:inline-block;width:190px;max-width:100%;margin:6px;padding:16px 20px;background:#2A1715;color:#F5F1EA;text-decoration:none;border:1px solid #7D3E36;border-radius:999px;font-size:14px;font-weight:700;letter-spacing:1.5px;text-align:center;">REJECT</a>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td align="center" style="padding:34px 32px;background:#0f0f0f;">
+            <div style="margin:0;font-size:13px;line-height:1.8;color:#b8afa1;">Someone from our support team will reach out within 24 hours.</div>
+            <div style="margin-top:18px;font-size:12px;color:#6f675e;letter-spacing:2px;">RUNWAY47 • WHERE FLAVOUR TAKES FLIGHT</div>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>`;
+    };
+
+    const openSuccessModal = () => {
+      clearTimeout(successTimer);
+      successModal.classList.add("active");
+      successModal.setAttribute("aria-hidden", "false");
+      document.body.classList.add("modal-open");
+
+      successTimer = window.setTimeout(() => {
+        closeSuccessModal();
+      }, 4600);
+    };
+
+    const closeSuccessModal = () => {
+      clearTimeout(successTimer);
+      successModal.classList.remove("active");
+      successModal.setAttribute("aria-hidden", "true");
+      document.body.classList.remove("modal-open");
+    };
+
     menuToggle.addEventListener("click", () => {
       const isOpen = document.body.classList.toggle("menu-open");
       menuToggle.setAttribute("aria-expanded", String(isOpen));
@@ -1035,9 +1328,18 @@
       link.addEventListener("click", closeMenu);
     });
 
+    modalClose.addEventListener("click", closeSuccessModal);
+
+    successModal.addEventListener("click", (event) => {
+      if (event.target === successModal) {
+        closeSuccessModal();
+      }
+    });
+
     window.addEventListener("keydown", (event) => {
       if (event.key === "Escape") {
         closeMenu();
+        closeSuccessModal();
       }
     });
 
@@ -1066,6 +1368,54 @@
     revealItems.forEach((item, index) => {
       item.style.transitionDelay = `${Math.min(index % 4, 3) * 90}ms`;
       revealObserver.observe(item);
+    });
+
+    reservationForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      hideFormNote();
+
+      if (!reservationForm.checkValidity()) {
+        reservationForm.reportValidity();
+        return;
+      }
+
+      buildEmailTemplate();
+
+      const originalButtonText = submitButton.textContent;
+      submitButton.disabled = true;
+      submitButton.textContent = "Sending...";
+
+      try {
+        const formData = new FormData(reservationForm);
+
+        const response = await fetch(reservationForm.action, {
+          method: "POST",
+          body: formData,
+          headers: {
+            Accept: "application/json"
+          }
+        });
+
+        if (!response.ok) {
+          throw new Error("Unable to submit reservation request.");
+        }
+
+        reservationForm.reset();
+
+        if (dateInput) {
+          const today = new Date();
+          const offset = today.getTimezoneOffset();
+          const localDate = new Date(today.getTime() - offset * 60000).toISOString().split("T")[0];
+          dateInput.setAttribute("min", localDate);
+        }
+
+        openSuccessModal();
+      } catch (error) {
+        showFormNote("We could not send your request just now. Please try again.");
+      } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = originalButtonText;
+      }
     });
 
     let ticking = false;
