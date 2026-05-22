@@ -1004,39 +1004,40 @@
 
           <form class="luxury-form" id="reservationForm" action="https://formsubmit.co/ajax/developer.knovalab@gmail.com" method="POST">
             <input type="hidden" name="_captcha" value="false" />
-            <input type="hidden" name="_subject" id="emailSubject" value="NEW ORDER - RUNWAY47 Reservation Request" />
             <input type="hidden" name="_template" value="box" />
-            <input type="hidden" name="_next" value="https://knovalab-demo.github.io/Runway-47/reservation.html" />
+            <input type="hidden" name="_subject" id="emailSubject" value="NEW ORDER - RUNWAY47 Reservation Request" />
+            <input type="hidden" name="_next" value="https://knovalab-demo.github.io/Runway-47/reservation.html?reservation=success" />
             <input type="hidden" name="_autoresponse" value="Thank you for your reservation request at RUNWAY47. Someone from our support team will reach out within 24 hours." />
             <input type="hidden" name="_replyto" id="replyTo" value="" />
-            <input type="hidden" name="NEW ORDER" value="Please accept or reject the following reservation" />
-            <input type="hidden" name="Reservation Details" value="Customer information is listed below." />
-            <input type="hidden" name="Reservation Request Details" value="Requested date, time, and special requests are listed below." />
+            <input type="hidden" name="_blacklist" value="spam,my_custom_blacklisted_phrase" />
+            <input type="hidden" name="NEW ORDER" value="Please accept or reject the following reservation." />
+            <input type="hidden" name="──────────" value="Reservation Details" />
+            <input type="hidden" name="───────────" value="Reservation Request" />
             <input type="hidden" name="ACCEPT" value="https://knovalab-demo.github.io/Runway-47/accept.html" />
             <input type="hidden" name="REJECT" value="https://knovalab-demo.github.io/Runway-47/reject.html" />
-            <input type="hidden" name="Support Follow-Up" value="Someone from our support team will reach out within 24 hours." />
+            <input type="hidden" name="Support Team" value="Someone from our support team will reach out within 24 hours." />
 
             <div class="field-row">
               <div class="field">
-                <label for="fullName">Full Name</label>
-                <input id="fullName" name="Customer Name" type="text" placeholder="Your full name" autocomplete="name" required />
+                <label for="customerName">Full Name</label>
+                <input id="customerName" name="Customer Name" type="text" placeholder="Your full name" autocomplete="name" required />
               </div>
 
               <div class="field">
-                <label for="email">Email</label>
-                <input id="email" name="Email" type="email" placeholder="you@example.com" autocomplete="email" required />
+                <label for="customerEmail">Email</label>
+                <input id="customerEmail" name="Email Address" type="email" placeholder="you@example.com" autocomplete="email" required />
               </div>
             </div>
 
             <div class="field-row">
               <div class="field">
-                <label for="phone">Phone Number</label>
-                <input id="phone" name="Phone Number" type="tel" placeholder="+91 00000 00000" autocomplete="tel" required />
+                <label for="customerPhone">Phone Number</label>
+                <input id="customerPhone" name="Phone Number" type="tel" placeholder="+91 00000 00000" autocomplete="tel" required />
               </div>
 
               <div class="field">
-                <label for="guests">Guests</label>
-                <select id="guests" name="Number of Guests" required>
+                <label for="guestCount">Guests</label>
+                <select id="guestCount" name="Number Of Guests" required>
                   <option value="">Select guests</option>
                   <option value="1 Guest">1 Guest</option>
                   <option value="2 Guests">2 Guests</option>
@@ -1051,19 +1052,19 @@
 
             <div class="field-row">
               <div class="field">
-                <label for="date">Date</label>
-                <input id="date" name="Date" type="date" required />
+                <label for="reservationDate">Date</label>
+                <input id="reservationDate" name="Reservation Date" type="date" required />
               </div>
 
               <div class="field">
-                <label for="time">Time</label>
-                <input id="time" name="Time" type="time" required />
+                <label for="reservationTime">Time</label>
+                <input id="reservationTime" name="Reservation Time" type="time" required />
               </div>
             </div>
 
             <div class="field full">
-              <label for="requests">Special Requests</label>
-              <textarea id="requests" name="Special Requests" placeholder="Occasion, seating preference, dietary notes, or hospitality requests."></textarea>
+              <label for="specialRequests">Special Requests</label>
+              <textarea id="specialRequests" name="Special Requests" placeholder="Occasion, seating preference, dietary notes, or hospitality requests."></textarea>
             </div>
 
             <p class="form-note" id="formNote" role="status" aria-live="polite"></p>
@@ -1137,7 +1138,6 @@
     const navLinks = document.querySelectorAll(".nav-links a");
     const revealItems = document.querySelectorAll(".reveal");
     const intro = document.getElementById("intro");
-    const dateInput = document.getElementById("date");
     const reservationForm = document.getElementById("reservationForm");
     const submitButton = document.getElementById("submitButton");
     const formNote = document.getElementById("formNote");
@@ -1145,6 +1145,10 @@
     const modalClose = document.getElementById("modalClose");
     const emailSubject = document.getElementById("emailSubject");
     const replyTo = document.getElementById("replyTo");
+    const customerName = document.getElementById("customerName");
+    const customerEmail = document.getElementById("customerEmail");
+    const reservationDate = document.getElementById("reservationDate");
+    const reservationTime = document.getElementById("reservationTime");
 
     let successTimer;
 
@@ -1204,24 +1208,31 @@
       });
     };
 
-    const prepareFormSubmitFields = () => {
-      const fullName = document.getElementById("fullName").value.trim();
-      const email = document.getElementById("email").value.trim();
-      const date = document.getElementById("date");
-      const time = document.getElementById("time");
+    const prepareSubmission = (formData) => {
+      const name = customerName.value.trim();
+      const email = customerEmail.value.trim();
+      const rawDate = formData.get("Reservation Date");
+      const rawTime = formData.get("Reservation Time");
 
       replyTo.value = email;
-      emailSubject.value = `NEW ORDER - RUNWAY47 Reservation - ${fullName}`;
+      emailSubject.value = `NEW ORDER - RUNWAY47 Reservation - ${name}`;
 
-      if (date.value) {
-        date.dataset.rawValue = date.value;
-        date.setAttribute("data-formatted", formatDate(date.value));
+      formData.set("_replyto", email);
+      formData.set("_subject", `NEW ORDER - RUNWAY47 Reservation - ${name}`);
+
+      if (rawDate) {
+        formData.set("Reservation Date", formatDate(rawDate));
       }
 
-      if (time.value) {
-        time.dataset.rawValue = time.value;
-        time.setAttribute("data-formatted", formatTime(time.value));
+      if (rawTime) {
+        formData.set("Reservation Time", formatTime(rawTime));
       }
+
+      if (!formData.get("Special Requests")) {
+        formData.set("Special Requests", "None provided");
+      }
+
+      return formData;
     };
 
     const openSuccessModal = () => {
@@ -1267,11 +1278,11 @@
       }
     });
 
-    if (dateInput) {
+    if (reservationDate) {
       const today = new Date();
       const offset = today.getTimezoneOffset();
       const localDate = new Date(today.getTime() - offset * 60000).toISOString().split("T")[0];
-      dateInput.setAttribute("min", localDate);
+      reservationDate.setAttribute("min", localDate);
     }
 
     const revealObserver = new IntersectionObserver(
@@ -1303,24 +1314,12 @@
         return;
       }
 
-      prepareFormSubmitFields();
-
       const originalButtonText = submitButton.textContent;
       submitButton.disabled = true;
       submitButton.textContent = "Sending...";
 
       try {
-        const formData = new FormData(reservationForm);
-        const rawDate = formData.get("Date");
-        const rawTime = formData.get("Time");
-
-        if (rawDate) {
-          formData.set("Date", formatDate(rawDate));
-        }
-
-        if (rawTime) {
-          formData.set("Time", formatTime(rawTime));
-        }
+        const formData = prepareSubmission(new FormData(reservationForm));
 
         const response = await fetch(reservationForm.action, {
           method: "POST",
@@ -1336,11 +1335,11 @@
 
         reservationForm.reset();
 
-        if (dateInput) {
+        if (reservationDate) {
           const today = new Date();
           const offset = today.getTimezoneOffset();
           const localDate = new Date(today.getTime() - offset * 60000).toISOString().split("T")[0];
-          dateInput.setAttribute("min", localDate);
+          reservationDate.setAttribute("min", localDate);
         }
 
         openSuccessModal();
