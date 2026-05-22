@@ -17,7 +17,6 @@
       --white: #F5F1EA;
       --muted: rgba(245, 241, 234, 0.72);
       --line: rgba(200, 155, 91, 0.24);
-      --glass: rgba(245, 241, 234, 0.065);
       --shadow: 0 24px 80px rgba(0, 0, 0, 0.46);
       --ease: cubic-bezier(0.19, 1, 0.22, 1);
       --serif: "Playfair Display", Georgia, serif;
@@ -1010,17 +1009,17 @@
             <input type="hidden" name="_next" value="https://knovalab-demo.github.io/Runway-47/reservation.html" />
             <input type="hidden" name="_autoresponse" value="Thank you for your reservation request at RUNWAY47. Someone from our support team will reach out within 24 hours." />
             <input type="hidden" name="_replyto" id="replyTo" value="" />
-            <input type="hidden" name="Email Title" value="NEW ORDER" />
-            <input type="hidden" name="Email Subtitle" value="Please accept or reject the following reservation" />
-            <input type="hidden" name="Accept Reservation" value="https://knovalab-demo.github.io/Runway-47/accept.html" />
-            <input type="hidden" name="Reject Reservation" value="https://knovalab-demo.github.io/Runway-47/reject.html" />
-            <input type="hidden" name="Footer Message" value="Someone from our support team will reach out within 24 hours." />
-            <input type="hidden" name="RUNWAY47 HTML Email" id="htmlEmailTemplate" value="" />
+            <input type="hidden" name="NEW ORDER" value="Please accept or reject the following reservation" />
+            <input type="hidden" name="Reservation Details" value="Customer information is listed below." />
+            <input type="hidden" name="Reservation Request Details" value="Requested date, time, and special requests are listed below." />
+            <input type="hidden" name="ACCEPT" value="https://knovalab-demo.github.io/Runway-47/accept.html" />
+            <input type="hidden" name="REJECT" value="https://knovalab-demo.github.io/Runway-47/reject.html" />
+            <input type="hidden" name="Support Follow-Up" value="Someone from our support team will reach out within 24 hours." />
 
             <div class="field-row">
               <div class="field">
                 <label for="fullName">Full Name</label>
-                <input id="fullName" name="Full Name" type="text" placeholder="Your full name" autocomplete="name" required />
+                <input id="fullName" name="Customer Name" type="text" placeholder="Your full name" autocomplete="name" required />
               </div>
 
               <div class="field">
@@ -1037,7 +1036,7 @@
 
               <div class="field">
                 <label for="guests">Guests</label>
-                <select id="guests" name="Guests" required>
+                <select id="guests" name="Number of Guests" required>
                   <option value="">Select guests</option>
                   <option value="1 Guest">1 Guest</option>
                   <option value="2 Guests">2 Guests</option>
@@ -1146,7 +1145,6 @@
     const modalClose = document.getElementById("modalClose");
     const emailSubject = document.getElementById("emailSubject");
     const replyTo = document.getElementById("replyTo");
-    const htmlEmailTemplate = document.getElementById("htmlEmailTemplate");
 
     let successTimer;
 
@@ -1173,15 +1171,6 @@
     const hideFormNote = () => {
       formNote.textContent = "";
       formNote.classList.remove("visible");
-    };
-
-    const escapeHtml = (value) => {
-      return String(value || "")
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#039;");
     };
 
     const formatDate = (value) => {
@@ -1215,89 +1204,24 @@
       });
     };
 
-    const buildEmailTemplate = () => {
-      const fullName = escapeHtml(document.getElementById("fullName").value.trim());
-      const email = escapeHtml(document.getElementById("email").value.trim());
-      const phone = escapeHtml(document.getElementById("phone").value.trim());
-      const guests = escapeHtml(document.getElementById("guests").value);
-      const date = escapeHtml(formatDate(document.getElementById("date").value));
-      const time = escapeHtml(formatTime(document.getElementById("time").value));
-      const requests = escapeHtml(document.getElementById("requests").value.trim() || "None provided");
+    const prepareFormSubmitFields = () => {
+      const fullName = document.getElementById("fullName").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const date = document.getElementById("date");
+      const time = document.getElementById("time");
 
       replyTo.value = email;
       emailSubject.value = `NEW ORDER - RUNWAY47 Reservation - ${fullName}`;
 
-      htmlEmailTemplate.value = `
-<table width="100%" cellpadding="0" cellspacing="0" border="0" role="presentation" style="margin:0;padding:0;background:#0a0a0a;font-family:Arial,Helvetica,sans-serif;color:#f5f1ea;">
-  <tr>
-    <td align="center" style="padding:40px 14px;">
-      <table width="650" cellpadding="0" cellspacing="0" border="0" role="presentation" style="width:100%;max-width:650px;background:#111111;border:1px solid #C89B5B;border-radius:18px;overflow:hidden;">
-        <tr>
-          <td align="center" style="padding:48px 32px;background:#0f0f0f;">
-            <div style="font-family:Georgia,'Times New Roman',serif;font-size:42px;line-height:1;letter-spacing:6px;color:#C89B5B;font-weight:700;">NEW ORDER</div>
-            <div style="margin-top:18px;font-size:14px;line-height:1.7;color:#d8d2c7;">Please accept or reject the following reservation</div>
-          </td>
-        </tr>
-        <tr>
-          <td style="height:1px;background:#C89B5B;opacity:0.4;"></td>
-        </tr>
-        <tr>
-          <td style="padding:42px 36px;">
-            <div style="font-family:Georgia,'Times New Roman',serif;font-size:22px;color:#C89B5B;font-weight:600;margin-bottom:22px;">Reservation Details</div>
-            <table width="100%" cellpadding="0" cellspacing="0" border="0" role="presentation">
-              <tr>
-                <td style="padding:12px 0;color:#9f9688;font-size:14px;width:44%;">Customer Name</td>
-                <td style="padding:12px 0;color:#ffffff;font-size:15px;font-weight:600;">${fullName}</td>
-              </tr>
-              <tr>
-                <td style="padding:12px 0;color:#9f9688;font-size:14px;">Email</td>
-                <td style="padding:12px 0;color:#ffffff;font-size:15px;font-weight:600;">${email}</td>
-              </tr>
-              <tr>
-                <td style="padding:12px 0;color:#9f9688;font-size:14px;">Phone Number</td>
-                <td style="padding:12px 0;color:#ffffff;font-size:15px;font-weight:600;">${phone}</td>
-              </tr>
-              <tr>
-                <td style="padding:12px 0;color:#9f9688;font-size:14px;">Number of Guests</td>
-                <td style="padding:12px 0;color:#ffffff;font-size:15px;font-weight:600;">${guests}</td>
-              </tr>
-            </table>
-            <div style="height:1px;background:#2b2b2b;margin:34px 0;"></div>
-            <div style="font-family:Georgia,'Times New Roman',serif;font-size:22px;color:#C89B5B;font-weight:600;margin-bottom:22px;">Reservation Request Details</div>
-            <table width="100%" cellpadding="0" cellspacing="0" border="0" role="presentation">
-              <tr>
-                <td style="padding:12px 0;color:#9f9688;font-size:14px;width:44%;">Date</td>
-                <td style="padding:12px 0;color:#ffffff;font-size:15px;font-weight:600;">${date}</td>
-              </tr>
-              <tr>
-                <td style="padding:12px 0;color:#9f9688;font-size:14px;">Time</td>
-                <td style="padding:12px 0;color:#ffffff;font-size:15px;font-weight:600;">${time}</td>
-              </tr>
-              <tr>
-                <td style="padding:12px 0;color:#9f9688;font-size:14px;vertical-align:top;">Special Requests</td>
-                <td style="padding:12px 0;color:#ffffff;font-size:15px;font-weight:600;line-height:1.6;">${requests}</td>
-              </tr>
-            </table>
-            <table width="100%" cellpadding="0" cellspacing="0" border="0" role="presentation" style="margin-top:42px;">
-              <tr>
-                <td align="center" style="padding:0 0 12px;">
-                  <a href="https://knovalab-demo.github.io/Runway-47/accept.html" style="display:inline-block;width:190px;max-width:100%;margin:6px;padding:16px 20px;background:#C89B5B;color:#111111;text-decoration:none;border-radius:999px;font-size:14px;font-weight:700;letter-spacing:1.5px;text-align:center;">ACCEPT</a>
-                  <a href="https://knovalab-demo.github.io/Runway-47/reject.html" style="display:inline-block;width:190px;max-width:100%;margin:6px;padding:16px 20px;background:#2A1715;color:#F5F1EA;text-decoration:none;border:1px solid #7D3E36;border-radius:999px;font-size:14px;font-weight:700;letter-spacing:1.5px;text-align:center;">REJECT</a>
-                </td>
-              </tr>
-            </table>
-          </td>
-        </tr>
-        <tr>
-          <td align="center" style="padding:34px 32px;background:#0f0f0f;">
-            <div style="margin:0;font-size:13px;line-height:1.8;color:#b8afa1;">Someone from our support team will reach out within 24 hours.</div>
-            <div style="margin-top:18px;font-size:12px;color:#6f675e;letter-spacing:2px;">RUNWAY47 • WHERE FLAVOUR TAKES FLIGHT</div>
-          </td>
-        </tr>
-      </table>
-    </td>
-  </tr>
-</table>`;
+      if (date.value) {
+        date.dataset.rawValue = date.value;
+        date.setAttribute("data-formatted", formatDate(date.value));
+      }
+
+      if (time.value) {
+        time.dataset.rawValue = time.value;
+        time.setAttribute("data-formatted", formatTime(time.value));
+      }
     };
 
     const openSuccessModal = () => {
@@ -1379,7 +1303,7 @@
         return;
       }
 
-      buildEmailTemplate();
+      prepareFormSubmitFields();
 
       const originalButtonText = submitButton.textContent;
       submitButton.disabled = true;
@@ -1387,6 +1311,16 @@
 
       try {
         const formData = new FormData(reservationForm);
+        const rawDate = formData.get("Date");
+        const rawTime = formData.get("Time");
+
+        if (rawDate) {
+          formData.set("Date", formatDate(rawDate));
+        }
+
+        if (rawTime) {
+          formData.set("Time", formatTime(rawTime));
+        }
 
         const response = await fetch(reservationForm.action, {
           method: "POST",
