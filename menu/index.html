@@ -3,15 +3,27 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Reserve your table at RUNWAY47, a luxury rooftop fine dining restaurant above the skyline." />
-  <title>Reserve RUNWAY47 | Where Flavour Takes Flight</title>
+
+  <meta
+    name="description"
+    content="Explore the RUNWAY47 luxury rooftop dining menu, from breakfast and lunch to signature plates, desserts, beverages, and chef specials."
+  />
+
+  <title>RUNWAY47 Menu | Where Flavour Takes Flight</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
   <style>
     :root {
       --black: #050505;
       --navbar-black: #080502;
+      --soft-black: #111111;
       --gold: #C89B5B;
       --gold-light: #E3C37A;
       --bronze: #9A6B3F;
@@ -26,15 +38,18 @@
       --serif: "Playfair Display", Georgia, serif;
       --sans: "Poppins", Arial, sans-serif;
     }
+
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
+
     html {
       scroll-behavior: smooth;
       overflow-x: hidden;
     }
+
     body {
       min-width: 320px;
       overflow-x: hidden;
@@ -43,51 +58,53 @@
       font-family: var(--sans);
       line-height: 1.7;
     }
-    body.menu-open,
-    body.modal-open {
+
+    body.menu-open {
       overflow: hidden;
     }
+
     a {
       color: inherit;
       text-decoration: none;
     }
+
     img {
       display: block;
       max-width: 100%;
     }
+
     button,
-    input,
-    textarea,
-    select {
-      font: inherit;
-    }
-    button,
-    a,
-    input,
-    textarea,
-    select {
+    a {
       -webkit-tap-highlight-color: transparent;
     }
+
+    button {
+      font: inherit;
+    }
+
     .container {
-      width: min(1120px, calc(100% - 40px));
+      width: min(1180px, calc(100% - 40px));
       margin: 0 auto;
     }
+
     .eyebrow {
       display: inline-flex;
       align-items: center;
       gap: 12px;
       color: var(--gold);
       font-size: 0.72rem;
-      font-weight: 600;
+      font-weight: 700;
       letter-spacing: 0.22em;
       text-transform: uppercase;
     }
+
     .eyebrow::before {
       content: "";
       width: 34px;
       height: 1px;
       background: linear-gradient(90deg, transparent, var(--gold));
     }
+
     .btn {
       position: relative;
       display: inline-flex;
@@ -105,9 +122,10 @@
       letter-spacing: 0.12em;
       line-height: 1;
       text-transform: uppercase;
-      transition: transform 320ms var(--ease), background 320ms var(--ease), border-color 320ms var(--ease), color 320ms var(--ease), box-shadow 320ms var(--ease), opacity 300ms ease;
+      transition: transform 320ms var(--ease), background 320ms var(--ease), border-color 320ms var(--ease), color 320ms var(--ease), box-shadow 320ms var(--ease);
       overflow: hidden;
     }
+
     .btn::after {
       content: "";
       position: absolute;
@@ -116,6 +134,7 @@
       transform: translateX(-130%);
       transition: transform 700ms var(--ease);
     }
+
     .btn:hover,
     .btn:focus-visible {
       border-color: var(--gold-light);
@@ -125,39 +144,36 @@
       transform: translateY(-2px);
       outline: none;
     }
+
     .btn:hover::after,
     .btn:focus-visible::after {
       transform: translateX(130%);
     }
-    .btn:disabled {
-      cursor: wait;
-      opacity: 0.68;
-      transform: none;
-    }
-    .btn-gold,
+
     .btn-primary {
       border-color: var(--gold);
       background: var(--gold);
       color: #080808;
       box-shadow: 0 16px 42px rgba(200, 155, 91, 0.2);
     }
-    .btn-gold:hover,
-    .btn-gold:focus-visible,
+
     .btn-primary:hover,
     .btn-primary:focus-visible {
       border-color: var(--gold-light);
       background: var(--gold-light);
       color: #080808;
     }
+
     .site-header {
       position: fixed;
       top: 0;
       left: 0;
-      z-index: 50;
+      z-index: 1000;
       width: 100%;
       border-bottom: 1px solid rgba(200, 155, 91, 0.2);
       background: var(--navbar-black);
     }
+
     .nav {
       display: flex;
       align-items: center;
@@ -166,6 +182,7 @@
       gap: 28px;
       padding: 10px 0;
     }
+
     .navbar-logo {
       display: inline-flex;
       align-items: center;
@@ -174,6 +191,7 @@
       line-height: 0;
       overflow: visible;
     }
+
     .navbar-logo img {
       display: block;
       height: 70px;
@@ -184,6 +202,7 @@
       border-radius: 0;
       overflow: visible;
     }
+
     .nav-links {
       display: flex;
       align-items: center;
@@ -191,6 +210,7 @@
       gap: 28px;
       list-style: none;
     }
+
     .nav-links a {
       position: relative;
       display: inline-flex;
@@ -201,6 +221,7 @@
       text-transform: uppercase;
       transition: color 260ms var(--ease);
     }
+
     .nav-links a::after {
       position: absolute;
       left: 0;
@@ -213,28 +234,33 @@
       transform-origin: right;
       transition: transform 280ms var(--ease);
     }
+
     .nav-links a:hover,
     .nav-links a:focus-visible,
     .nav-links a.active {
       color: var(--gold-light);
       outline: none;
     }
+
     .nav-links a:hover::after,
     .nav-links a:focus-visible::after,
     .nav-links a.active::after {
       transform: scaleX(1);
       transform-origin: left;
     }
+
     .nav-actions {
       display: flex;
       align-items: center;
       gap: 12px;
     }
+
     .nav-reserve {
       min-height: 42px;
       padding-inline: 19px;
       font-size: 0.68rem;
     }
+
     .menu-toggle {
       display: none;
       align-items: center;
@@ -247,6 +273,7 @@
       color: var(--white);
       cursor: pointer;
     }
+
     .menu-toggle span {
       display: block;
       width: 18px;
@@ -255,425 +282,355 @@
       background: currentColor;
       transition: transform 300ms ease, opacity 300ms ease;
     }
+
     .menu-open .menu-toggle span:nth-child(1) {
       transform: translateY(6px) rotate(45deg);
     }
+
     .menu-open .menu-toggle span:nth-child(2) {
       opacity: 0;
     }
+
     .menu-open .menu-toggle span:nth-child(3) {
       transform: translateY(-6px) rotate(-45deg);
     }
-    .page-shell {
-      position: relative;
-      overflow: hidden;
-      background:
-        radial-gradient(circle at 14% 28%, rgba(200, 155, 91, 0.1), transparent 26%),
-        radial-gradient(circle at 86% 16%, rgba(154, 107, 63, 0.12), transparent 28%),
-        linear-gradient(180deg, #050505, #100f0d 48%, #050505);
-    }
-    .ambient {
-      position: absolute;
-      border-radius: 999px;
-      background: rgba(200, 155, 91, 0.1);
-      filter: blur(30px);
-      pointer-events: none;
-      animation: floatGlow 9000ms ease-in-out infinite;
-    }
-    .ambient.one {
-      top: 18vh;
-      left: -90px;
-      width: 260px;
-      height: 260px;
-    }
-    .ambient.two {
-      right: -100px;
-      bottom: 18vh;
-      width: 320px;
-      height: 320px;
-      animation-delay: -3000ms;
-    }
-    .intro {
+
+    .menu-hero {
       position: relative;
       display: flex;
       align-items: center;
       min-height: 100vh;
       min-height: 100svh;
-      padding: 118px 0 58px;
+      padding: 128px 0 62px;
       overflow: hidden;
       isolation: isolate;
-    }
-    .intro::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: -2;
-      background:
-        linear-gradient(90deg, rgba(5, 5, 5, 0.94), rgba(5, 5, 5, 0.58), rgba(5, 5, 5, 0.9)),
-        linear-gradient(180deg, rgba(5, 5, 5, 0.18), rgba(5, 5, 5, 0.96)),
-        url("https://i.pinimg.com/736x/7b/4b/74/7b4b749486185fb600ca413959d1d6fa.jpg") center / cover no-repeat;
-      transform: translate3d(0, var(--intro-parallax, 0px), 0) scale(1.04);
-      will-change: transform;
-    }
-    .intro::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: -1;
-      background:
-        radial-gradient(circle at 50% 62%, rgba(200, 155, 91, 0.18), transparent 34%),
-        linear-gradient(180deg, transparent 60%, var(--black));
-    }
-    .intro-content {
-      position: relative;
-      max-width: 780px;
-      margin: 0 auto;
       text-align: center;
+      background:
+        linear-gradient(90deg, rgba(5, 5, 5, 0.9), rgba(5, 5, 5, 0.58), rgba(5, 5, 5, 0.9)),
+        linear-gradient(180deg, rgba(5, 5, 5, 0.12), rgba(5, 5, 5, 0.96)),
+        url("https://i.pinimg.com/736x/7b/4b/74/7b4b749486185fb600ca413959d1d6fa.jpg") center / cover no-repeat;
     }
-    .intro-content .eyebrow {
+
+    .menu-hero::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      z-index: -1;
+      height: 38%;
+      background: linear-gradient(180deg, transparent, var(--black));
+    }
+
+    .menu-hero-content {
+      width: min(900px, 100%);
+      margin: 0 auto;
+    }
+
+    .menu-hero .eyebrow {
       justify-content: center;
-      opacity: 0;
-      animation: fadeUp 1000ms 180ms var(--ease) forwards;
     }
-    .intro-content .eyebrow::after {
+
+    .menu-hero .eyebrow::after {
       content: "";
       width: 34px;
       height: 1px;
       background: linear-gradient(90deg, var(--gold), transparent);
     }
-    .intro-content h1 {
+
+    .menu-hero h1 {
       margin-top: 18px;
       font-family: var(--serif);
-      font-size: clamp(3rem, 7vw, 6.2rem);
+      font-size: clamp(3.2rem, 7.4vw, 7rem);
       font-weight: 700;
-      letter-spacing: 0.04em;
-      line-height: 0.9;
-      opacity: 0;
+      line-height: 0.92;
+      letter-spacing: 0.02em;
       text-shadow: 0 22px 68px rgba(0, 0, 0, 0.74);
-      animation: fadeUp 1050ms 320ms var(--ease) forwards;
     }
-    .intro-content p {
-      max-width: 650px;
+
+    .menu-hero p {
+      max-width: 720px;
       margin: 24px auto 0;
-      color: rgba(245, 241, 234, 0.76);
+      color: rgba(245, 241, 234, 0.78);
+      font-size: 1.02rem;
       font-weight: 300;
-      opacity: 0;
-      animation: fadeUp 1050ms 480ms var(--ease) forwards;
+      line-height: 1.8;
     }
-    .intro-divider {
-      display: grid;
-      grid-template-columns: 1fr auto 1fr;
-      align-items: center;
-      gap: 16px;
-      width: min(430px, 100%);
-      margin: 32px auto 0;
-      color: rgba(200, 155, 91, 0.8);
-      font-family: var(--serif);
-      font-size: 0.86rem;
-      letter-spacing: 0.18em;
-      opacity: 0;
-      animation: fadeUp 1050ms 640ms var(--ease) forwards;
-    }
-    .intro-divider::before,
-    .intro-divider::after {
-      content: "";
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(200, 155, 91, 0.72));
-    }
-    .intro-divider::after {
-      background: linear-gradient(90deg, rgba(200, 155, 91, 0.72), transparent);
-    }
-    .particle {
-      position: absolute;
-      width: 4px;
-      height: 4px;
-      border-radius: 50%;
-      background: rgba(200, 155, 91, 0.58);
-      box-shadow: 0 0 26px rgba(200, 155, 91, 0.6);
-      opacity: 0.5;
-      animation: drift 8500ms linear infinite;
-    }
-    .particle:nth-child(1) {
-      left: 15%;
-      top: 34%;
-    }
-    .particle:nth-child(2) {
-      left: 68%;
-      top: 26%;
-      animation-delay: -2400ms;
-    }
-    .particle:nth-child(3) {
-      left: 82%;
-      top: 58%;
-      animation-delay: -5200ms;
-    }
-    .reservation-section {
+
+    .menu-panel {
       position: relative;
-      display: flex;
-      align-items: center;
       min-height: 100vh;
-      min-height: 100svh;
-      padding: 112px 0 72px;
-    }
-    .reservation-section::before {
-      content: "";
-      position: absolute;
-      inset: 0;
+      padding: 82px 0;
       background:
-        radial-gradient(circle at 18% 30%, rgba(154, 107, 63, 0.14), transparent 28%),
-        radial-gradient(circle at 86% 62%, rgba(200, 155, 91, 0.09), transparent 30%);
-      pointer-events: none;
+        radial-gradient(circle at 12% 18%, rgba(200, 155, 91, 0.1), transparent 26%),
+        radial-gradient(circle at 88% 24%, rgba(154, 107, 63, 0.12), transparent 28%),
+        linear-gradient(180deg, #050505, #100f0d 48%, #050505);
     }
-    .reservation-frame {
-      position: relative;
-      max-width: 920px;
-      margin: 0 auto;
-      padding: clamp(28px, 4.5vw, 52px);
-      border: 1px solid rgba(200, 155, 91, 0.22);
-      border-radius: 28px;
-      background:
-        linear-gradient(180deg, rgba(245, 241, 234, 0.08), rgba(245, 241, 234, 0.025)),
-        rgba(5, 5, 5, 0.58);
-      backdrop-filter: blur(14px);
-      box-shadow: var(--shadow);
-      overflow: hidden;
-    }
-    .reservation-frame::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(circle at 22% 14%, rgba(200, 155, 91, 0.15), transparent 32%),
-        linear-gradient(90deg, rgba(200, 155, 91, 0.1), transparent 18%, transparent 82%, rgba(200, 155, 91, 0.08));
-      pointer-events: none;
-    }
-    .reservation-head {
-      position: relative;
-      max-width: 650px;
-      margin: 0 auto 30px;
+
+    .section-head {
+      max-width: 760px;
+      margin: 0 auto 36px;
       text-align: center;
     }
-    .reservation-head .eyebrow {
+
+    .section-head .eyebrow {
       justify-content: center;
     }
-    .reservation-head .eyebrow::after {
+
+    .section-head .eyebrow::after {
       content: "";
       width: 34px;
       height: 1px;
       background: linear-gradient(90deg, var(--gold), transparent);
     }
-    .reservation-head h2 {
+
+    .section-head h2 {
       margin-top: 14px;
       font-family: var(--serif);
-      font-size: clamp(2.1rem, 4.6vw, 3.75rem);
-      line-height: 0.98;
+      font-size: clamp(2.2rem, 4.8vw, 4.5rem);
       font-weight: 600;
+      line-height: 1;
     }
-    .reservation-head p {
+
+    .section-head p {
       margin-top: 16px;
-      color: rgba(245, 241, 234, 0.68);
+      color: var(--muted);
+      line-height: 1.8;
     }
-    .luxury-form {
-      position: relative;
+
+    .menu-feature-strip {
       display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 16px;
+      margin-bottom: 34px;
     }
-    .field-row {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
-    }
-    .field {
-      position: relative;
-    }
-    .field label {
-      display: block;
-      margin-bottom: 8px;
-      color: rgba(245, 241, 234, 0.68);
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.13em;
-      text-transform: uppercase;
-      transition: color 300ms ease;
-    }
-    .field input,
-    .field textarea,
-    .field select {
-      width: 100%;
-      border: 1px solid rgba(200, 155, 91, 0.18);
-      border-radius: 16px;
-      background: rgba(5, 5, 5, 0.5);
-      color: var(--white);
-      outline: none;
-      padding: 14px 16px;
-      transition: border-color 360ms ease, background 360ms ease, box-shadow 360ms ease, transform 360ms var(--ease);
-    }
-    .field select {
-      appearance: none;
-      background-image:
-        linear-gradient(45deg, transparent 50%, var(--gold) 50%),
-        linear-gradient(135deg, var(--gold) 50%, transparent 50%);
-      background-position:
-        calc(100% - 20px) 50%,
-        calc(100% - 14px) 50%;
-      background-size: 6px 6px, 6px 6px;
-      background-repeat: no-repeat;
-    }
-    .field textarea {
-      min-height: 118px;
-      resize: vertical;
-    }
-    .field input::placeholder,
-    .field textarea::placeholder {
-      color: rgba(245, 241, 234, 0.34);
-    }
-    .field:hover input,
-    .field:hover textarea,
-    .field:hover select {
-      border-color: rgba(200, 155, 91, 0.38);
-      background-color: rgba(245, 241, 234, 0.055);
-    }
-    .field input:focus,
-    .field textarea:focus,
-    .field select:focus {
-      border-color: rgba(200, 155, 91, 0.78);
-      background-color: rgba(5, 5, 5, 0.66);
-      box-shadow: 0 0 0 4px rgba(200, 155, 91, 0.08), 0 18px 44px rgba(0, 0, 0, 0.22);
-      transform: translateY(-2px);
-    }
-    .field:focus-within label {
-      color: var(--gold);
-    }
-    .full {
-      grid-column: 1 / -1;
-    }
-    .form-actions {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-top: 8px;
-    }
-    .form-note {
-      display: none;
-      color: rgba(245, 241, 234, 0.68);
-      font-size: 0.84rem;
-      text-align: center;
-    }
-    .form-note.visible {
-      display: block;
-    }
-    .success-modal {
-      position: fixed;
-      inset: 0;
-      z-index: 100;
-      display: grid;
-      place-items: center;
+
+    .menu-feature {
+      min-height: 128px;
       padding: 22px;
-      background: rgba(4, 4, 4, 0.74);
-      backdrop-filter: blur(12px);
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 380ms ease, visibility 380ms ease;
-    }
-    .success-modal.active {
-      opacity: 1;
-      visibility: visible;
-    }
-    .success-card {
-      position: relative;
-      width: min(520px, 100%);
-      padding: clamp(30px, 6vw, 48px);
-      border: 1px solid rgba(200, 155, 91, 0.38);
-      border-radius: 28px;
-      background:
-        radial-gradient(circle at 50% 0%, rgba(200, 155, 91, 0.22), transparent 38%),
-        linear-gradient(180deg, rgba(24, 22, 20, 0.98), rgba(8, 8, 8, 0.98));
-      box-shadow:
-        0 0 70px rgba(200, 155, 91, 0.22),
-        0 30px 90px rgba(0, 0, 0, 0.58);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(245, 241, 234, 0.035);
       text-align: center;
-      transform: translateY(24px) scale(0.96);
-      transition: transform 520ms var(--ease);
+    }
+
+    .menu-feature strong {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--gold-light);
+      font-family: var(--serif);
+      font-size: 1.42rem;
+      font-weight: 600;
+    }
+
+    .menu-feature span {
+      color: rgba(245, 241, 234, 0.64);
+      font-size: 0.88rem;
+    }
+
+    .category-nav {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 34px;
+      list-style: none;
+    }
+
+    .category-btn {
+      min-height: 44px;
+      padding: 0 20px;
+      border: 1px solid rgba(200, 155, 91, 0.28);
+      border-radius: 999px;
+      background: rgba(245, 241, 234, 0.04);
+      color: rgba(245, 241, 234, 0.76);
+      cursor: pointer;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: transform 260ms var(--ease), background 260ms var(--ease), border-color 260ms var(--ease), color 260ms var(--ease);
+    }
+
+    .category-btn:hover,
+    .category-btn:focus-visible,
+    .category-btn.active {
+      border-color: var(--gold);
+      background: var(--gold);
+      color: #080808;
+      transform: translateY(-2px);
+      outline: none;
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+      transition: opacity 260ms ease, transform 260ms ease;
+    }
+
+    .menu-grid.switching {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+
+    .menu-card {
+      overflow: hidden;
+      border: 1px solid rgba(200, 155, 91, 0.18);
+      border-radius: 8px;
+      background:
+        linear-gradient(180deg, rgba(245, 241, 234, 0.06), rgba(245, 241, 234, 0.02)),
+        #0c0c0c;
+      box-shadow: var(--shadow);
+      animation: cardIn 560ms var(--ease) both;
+      transition: transform 320ms var(--ease), border-color 320ms var(--ease);
+    }
+
+    .menu-card:hover {
+      border-color: rgba(200, 155, 91, 0.48);
+      transform: translateY(-7px);
+    }
+
+    .menu-image {
+      position: relative;
+      height: 210px;
       overflow: hidden;
     }
-    .success-modal.active .success-card {
-      transform: translateY(0) scale(1);
+
+    .menu-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 700ms var(--ease);
     }
-    .success-card::before {
-      content: "";
+
+    .menu-card:hover .menu-image img {
+      transform: scale(1.04);
+    }
+
+    .tag {
       position: absolute;
-      inset: 0;
-      background: linear-gradient(110deg, transparent, rgba(245, 241, 234, 0.08), transparent);
-      transform: translateX(-130%);
-      animation: modalSheen 1800ms 260ms var(--ease) forwards;
-      pointer-events: none;
+      top: 14px;
+      left: 14px;
+      z-index: 2;
+      padding: 7px 10px;
+      border: 1px solid rgba(200, 155, 91, 0.5);
+      border-radius: 999px;
+      background: rgba(5, 5, 5, 0.72);
+      color: var(--gold-light);
+      font-size: 0.66rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
     }
-    .success-mark {
-      display: grid;
-      place-items: center;
-      width: 70px;
-      height: 70px;
-      margin: 0 auto 24px;
-      border: 1px solid rgba(200, 155, 91, 0.66);
-      border-radius: 50%;
-      background: rgba(200, 155, 91, 0.12);
-      color: var(--gold);
-      font-size: 2.2rem;
-      line-height: 1;
-      box-shadow: 0 0 42px rgba(200, 155, 91, 0.3);
+
+    .menu-content {
+      padding: 20px;
     }
-    .success-card h2 {
+
+    .menu-content h3 {
+      color: var(--white);
       font-family: var(--serif);
-      font-size: clamp(2rem, 6vw, 3.2rem);
+      font-size: 1.55rem;
+      font-weight: 600;
+      line-height: 1.08;
+    }
+
+    .menu-content p {
+      min-height: 70px;
+      margin-top: 10px;
+      color: rgba(245, 241, 234, 0.66);
+      font-size: 0.9rem;
+      line-height: 1.65;
+    }
+
+    .menu-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-top: 16px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(200, 155, 91, 0.16);
+    }
+
+    .price {
+      color: var(--gold-light);
+      font-size: 1.02rem;
+      font-weight: 700;
+    }
+
+    .card-cta {
+      display: inline-grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      border: 1px solid rgba(200, 155, 91, 0.28);
+      border-radius: 50%;
+      color: var(--gold);
+    }
+
+    .view-more-wrap {
+      display: flex;
+      justify-content: center;
+      margin-top: 36px;
+    }
+
+    .view-more-wrap.hidden {
+      display: none;
+    }
+
+    .menu-cta {
+      display: grid;
+      align-items: center;
+      min-height: 72vh;
+      padding: 72px 20px;
+      background:
+        linear-gradient(rgba(5, 5, 5, 0.82), rgba(5, 5, 5, 0.82)),
+        url("https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1600&auto=format&fit=crop") center / cover no-repeat;
+      text-align: center;
+    }
+
+    .menu-cta-box {
+      width: min(860px, 100%);
+      margin: 0 auto;
+    }
+
+    .menu-cta-box h2 {
+      font-family: var(--serif);
+      font-size: clamp(2.2rem, 4.8vw, 4.5rem);
       font-weight: 600;
       line-height: 1;
     }
-    .success-card p {
-      margin-top: 18px;
-      color: rgba(245, 241, 234, 0.68);
-      font-size: 0.98rem;
+
+    .menu-cta-box p {
+      max-width: 660px;
+      margin: 18px auto 28px;
+      color: rgba(245, 241, 234, 0.74);
+      line-height: 1.8;
     }
-    .modal-close {
-      position: absolute;
-      top: 16px;
-      right: 16px;
-      display: grid;
-      place-items: center;
-      width: 38px;
-      height: 38px;
-      border: 1px solid rgba(200, 155, 91, 0.24);
-      border-radius: 50%;
-      background: rgba(5, 5, 5, 0.42);
-      color: var(--white);
-      cursor: pointer;
-      transition: border-color 300ms ease, color 300ms ease, transform 300ms ease;
-    }
-    .modal-close:hover,
-    .modal-close:focus-visible {
-      border-color: rgba(200, 155, 91, 0.72);
-      color: var(--gold);
-      transform: rotate(90deg);
-      outline: none;
-    }
+
     .site-footer {
       background: #050505;
       color: var(--text-soft);
       padding: 72px 20px 42px;
       border-top: 1px solid var(--divider);
     }
+
     .footer-shell {
       width: min(1180px, 100%);
       margin: 0 auto;
     }
+
     .footer-columns {
       display: grid;
       grid-template-columns: 1.5fr repeat(4, 1fr);
       gap: clamp(28px, 4vw, 58px);
       align-items: start;
     }
+
     .footer-brand {
       max-width: 330px;
     }
+
     .footer-brand-logo {
       display: inline-flex;
       align-items: center;
@@ -681,6 +638,7 @@
       line-height: 0;
       overflow: visible;
     }
+
     .footer-brand-logo img {
       display: block;
       height: 92px;
@@ -691,6 +649,7 @@
       border-radius: 0;
       overflow: visible;
     }
+
     .footer-statement {
       margin-top: 22px;
       color: rgba(245, 241, 234, 0.82);
@@ -699,6 +658,7 @@
       font-weight: 500;
       line-height: 1.18;
     }
+
     .footer-col h3 {
       margin-bottom: 18px;
       color: var(--gold);
@@ -707,39 +667,46 @@
       letter-spacing: 0.16em;
       text-transform: uppercase;
     }
+
     .footer-col ul {
       display: grid;
       gap: 12px;
       list-style: none;
     }
+
     .footer-col a,
     .footer-col span {
       color: var(--text-soft);
       font-size: 0.95rem;
       transition: color 220ms var(--ease);
     }
+
     .footer-col a:hover,
     .footer-col a:focus-visible {
       color: var(--gold-light);
       outline: none;
     }
+
     .footer-reserve {
       margin-top: 22px;
       min-height: 42px;
       padding: 0 18px;
       font-size: 0.72rem;
     }
+
     .footer-divider {
       width: 100%;
       height: 1px;
       margin: 58px 0 34px;
       background: var(--divider);
     }
+
     .footer-lower {
       display: grid;
       justify-items: center;
       text-align: center;
     }
+
     .social-links {
       display: flex;
       align-items: center;
@@ -747,6 +714,7 @@
       gap: 14px;
       margin-bottom: 22px;
     }
+
     .social-link {
       display: inline-flex;
       align-items: center;
@@ -758,6 +726,7 @@
       color: rgba(245, 241, 234, 0.74);
       transition: transform 240ms var(--ease), border-color 240ms var(--ease), color 240ms var(--ease);
     }
+
     .social-link svg {
       width: 18px;
       height: 18px;
@@ -767,6 +736,7 @@
       stroke-linecap: round;
       stroke-linejoin: round;
     }
+
     .social-link:hover,
     .social-link:focus-visible {
       border-color: var(--gold);
@@ -774,10 +744,12 @@
       transform: translateY(-3px);
       outline: none;
     }
+
     .footer-copy {
       color: rgba(245, 241, 234, 0.62);
       font-size: 0.86rem;
     }
+
     .footer-tagline {
       margin-top: 10px;
       color: var(--gold);
@@ -786,63 +758,62 @@
       letter-spacing: 0.08em;
       text-transform: uppercase;
     }
+
     .reveal {
       opacity: 0;
       transform: translateY(30px);
       transition: opacity 850ms var(--ease), transform 850ms var(--ease);
     }
+
     .reveal.visible {
       opacity: 1;
       transform: translateY(0);
     }
-    @keyframes fadeUp {
+
+    @keyframes cardIn {
       from {
         opacity: 0;
-        transform: translateY(28px);
+        transform: translateY(18px);
       }
+
       to {
         opacity: 1;
         transform: translateY(0);
       }
     }
-    @keyframes floatGlow {
-      0%,
-      100% {
-        transform: translate3d(0, 0, 0) scale(1);
+
+    @media (max-width: 1020px) {
+      .menu-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
-      50% {
-        transform: translate3d(28px, -34px, 0) scale(1.08);
+
+      .menu-feature-strip {
+        grid-template-columns: 1fr;
       }
-    }
-    @keyframes drift {
-      0% {
-        transform: translate3d(0, 22px, 0);
-        opacity: 0;
+
+      .footer-columns {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 38px 34px;
       }
-      18%,
-      78% {
-        opacity: 0.58;
-      }
-      100% {
-        transform: translate3d(48px, -90px, 0);
-        opacity: 0;
+
+      .footer-brand {
+        max-width: none;
       }
     }
-    @keyframes modalSheen {
-      to {
-        transform: translateX(130%);
-      }
-    }
+
     @media (max-width: 980px) {
       .nav {
         min-height: 78px;
       }
+
       .navbar-logo img {
         height: 60px;
       }
+
       .menu-toggle {
         display: inline-block;
       }
+
       .nav-links {
         position: fixed;
         top: 78px;
@@ -861,80 +832,82 @@
         transform: translateX(100%);
         transition: transform 320ms var(--ease);
       }
+
       .menu-open .nav-links {
         transform: translateX(0);
       }
+
       .nav-links a {
         width: 100%;
         font-size: 0.92rem;
       }
+
       .nav-reserve {
         display: none;
       }
-      .intro,
-      .reservation-section {
-        min-height: 100vh;
-        min-height: 100svh;
-      }
-      .footer-columns {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 38px 34px;
-      }
-      .footer-brand {
-        max-width: none;
-      }
     }
+
     @media (max-width: 768px) {
-      .navbar-logo img {
-        height: 55px;
-      }
-      .footer-brand-logo img {
-        height: 78px;
-      }
-    }
-    @media (max-width: 680px) {
       .container {
-        width: min(100% - 28px, 1120px);
+        width: min(100% - 28px, 1180px);
       }
+
       .nav {
         min-height: 74px;
       }
-      .intro {
+
+      .navbar-logo img {
+        height: 55px;
+      }
+
+      .menu-hero {
         align-items: end;
-        min-height: 100vh;
-        min-height: 100svh;
         padding: 112px 0 48px;
       }
-      .reservation-section {
-        min-height: auto;
-        padding: 62px 0;
+
+      .menu-panel {
+        padding: 58px 0;
       }
-      .field-row {
+
+      .menu-grid {
         grid-template-columns: 1fr;
       }
-      .reservation-frame {
-        border-radius: 22px;
+
+      .menu-image {
+        height: 240px;
       }
-      .form-actions .btn {
-        width: 100%;
+
+      .menu-content p {
+        min-height: auto;
       }
+
+      .menu-cta {
+        min-height: 62vh;
+        padding: 58px 18px;
+      }
+
       .site-footer {
         padding: 58px 18px 36px;
       }
+
       .footer-columns {
         grid-template-columns: 1fr;
         gap: 34px;
       }
+
       .footer-brand-logo img {
         height: 72px;
       }
+
       .footer-statement {
         max-width: 340px;
       }
+
       .footer-divider {
         margin: 42px 0 30px;
       }
     }
+
     @media (prefers-reduced-motion: reduce) {
       *,
       *::before,
@@ -944,37 +917,46 @@
         animation-iteration-count: 1 !important;
         transition-duration: 1ms !important;
       }
-      .intro::before {
-        transform: scale(1.02);
-      }
     }
   </style>
 </head>
+
 <body>
   <header class="site-header" id="siteHeader">
     <nav class="nav container" aria-label="Primary navigation">
       <a class="navbar-logo" href="https://knovalab-demo.github.io/Runway-47/" aria-label="RUNWAY47 home">
         <img src="https://i.pinimg.com/736x/49/9e/de/499ede9177588c4d29cc474c6f0bd0b9.jpg" alt="RUNWAY47 Logo" />
       </a>
+
       <ul class="nav-links" id="navLinks">
         <li>
           <a href="https://knovalab-demo.github.io/Runway-47/about/index.html">About</a>
         </li>
+
         <li>
           <a href="https://knovalab-demo.github.io/Runway-47/experience/index.html">Experience</a>
         </li>
+
         <li>
           <a href="https://knovalab-demo.github.io/Runway-47/gallery/index.html">Gallery</a>
         </li>
+
         <li>
           <a href="https://knovalab-demo.github.io/Runway-47/bar/index.html">After Dark</a>
         </li>
+
         <li>
-          <a class="active" href="https://knovalab-demo.github.io/Runway-47/reservation/index.html">Reservations</a>
+          <a class="active" href="https://knovalab-demo.github.io/Runway-47/menu/index.html">Menu</a>
+        </li>
+
+        <li>
+          <a href="https://knovalab-demo.github.io/Runway-47/reservation/index.html">Reservations</a>
         </li>
       </ul>
+
       <div class="nav-actions">
         <a class="btn btn-primary nav-reserve" href="https://knovalab-demo.github.io/Runway-47/reservation/index.html">Reserve</a>
+
         <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open navigation menu" aria-controls="navLinks" aria-expanded="false">
           <span></span>
           <span></span>
@@ -983,103 +965,73 @@
       </div>
     </nav>
   </header>
-  <main class="page-shell">
-    <span class="ambient one" aria-hidden="true"></span>
-    <span class="ambient two" aria-hidden="true"></span>
-    <section class="intro" id="intro">
-      <span class="particle" aria-hidden="true"></span>
-      <span class="particle" aria-hidden="true"></span>
-      <span class="particle" aria-hidden="true"></span>
+
+  <main>
+    <section class="menu-hero">
       <div class="container">
-        <div class="intro-content">
-          <span class="eyebrow">Reserve your ascent</span>
-          <h1>Reserve Your Table</h1>
-          <p>Plan an evening above the skyline with polished service, quiet luxury, and a table composed for the rhythm of your occasion.</p>
-          <div class="intro-divider">RUNWAY47</div>
+        <div class="menu-hero-content">
+          <span class="eyebrow">Curated Dining Selection</span>
+
+          <h1>Our Menu</h1>
+
+          <p>From golden-hour plates to after-dark cocktails, every course is composed for altitude, elegance, and a table above the city.</p>
         </div>
       </div>
     </section>
-    <section class="reservation-section">
+
+    <section class="menu-panel">
       <div class="container">
-        <div class="reservation-frame reveal">
-          <div class="reservation-head">
-            <span class="eyebrow">Booking request</span>
-            <h2>Your skyline table awaits.</h2>
-            <p>Submit your preferred details and our hospitality team will confirm availability with care.</p>
-          </div>
-          <form class="luxury-form" id="reservationForm" action="https://formsubmit.co/ajax/developer.knovalab@gmail.com" method="POST">
-            <input type="hidden" name="_captcha" value="false" />
-            <input type="hidden" name="_template" value="box" />
-            <input type="hidden" name="_subject" id="emailSubject" value="NEW ORDER - RUNWAY47 Reservation Request" />
-            <input type="hidden" name="_next" value="https://knovalab-demo.github.io/Runway-47/reservation.html?reservation=success" />
-            <input type="hidden" name="_autoresponse" value="Thank you for your reservation request at RUNWAY47. Someone from our support team will reach out within 24 hours." />
-            <input type="hidden" name="_replyto" id="replyTo" value="" />
-            <input type="hidden" name="_blacklist" value="spam,my_custom_blacklisted_phrase" />
-            <input type="hidden" name="NEW ORDER" value="Please accept or reject the following reservation." />
-            <input type="hidden" name="Reservation Details" value="Reservation Request" />
-            <input type="hidden" name="ACCEPT" value="https://knovalab-demo.github.io/Runway-47/accept.html" />
-            <input type="hidden" name="REJECT" value="https://knovalab-demo.github.io/Runway-47/reject.html" />
-            <input type="hidden" name="Support Team" value="Someone from our support team will reach out within 24 hours." />
-            <div class="field-row">
-              <div class="field">
-                <label for="customerName">Full Name</label>
-                <input id="customerName" name="Customer Name" type="text" placeholder="Your full name" autocomplete="name" required />
-              </div>
-              <div class="field">
-                <label for="customerEmail">Email</label>
-                <input id="customerEmail" name="Email Address" type="email" placeholder="you@example.com" autocomplete="email" required />
-              </div>
-            </div>
-            <div class="field-row">
-              <div class="field">
-                <label for="customerPhone">Phone Number</label>
-                <input id="customerPhone" name="Phone Number" type="tel" placeholder="+91 00000 00000" autocomplete="tel" required />
-              </div>
-              <div class="field">
-                <label for="guestCount">Guests</label>
-                <select id="guestCount" name="Number Of Guests" required>
-                  <option value="">Select guests</option>
-                  <option value="1 Guest">1 Guest</option>
-                  <option value="2 Guests">2 Guests</option>
-                  <option value="3 Guests">3 Guests</option>
-                  <option value="4 Guests">4 Guests</option>
-                  <option value="5 Guests">5 Guests</option>
-                  <option value="6 Guests">6 Guests</option>
-                  <option value="7+ Guests">7+ Guests</option>
-                </select>
-              </div>
-            </div>
-            <div class="field-row">
-              <div class="field">
-                <label for="reservationDate">Date</label>
-                <input id="reservationDate" name="Reservation Date" type="date" required />
-              </div>
-              <div class="field">
-                <label for="reservationTime">Time</label>
-                <input id="reservationTime" name="Reservation Time" type="time" required />
-              </div>
-            </div>
-            <div class="field full">
-              <label for="specialRequests">Special Requests</label>
-              <textarea id="specialRequests" name="Special Requests" placeholder="Occasion, seating preference, dietary notes, or hospitality requests."></textarea>
-            </div>
-            <p class="form-note" id="formNote" role="status" aria-live="polite"></p>
-            <div class="form-actions">
-              <button class="btn btn-primary" id="submitButton" type="submit">Reserve Now</button>
-            </div>
-          </form>
+        <div class="section-head reveal">
+          <span class="eyebrow">Explore Categories</span>
+
+          <h2>Choose Your Course</h2>
+
+          <p>Browse seasonal signatures, refined comfort plates, desserts, and beverage selections crafted for the RUNWAY47 rooftop experience.</p>
         </div>
+
+        <div class="menu-feature-strip reveal">
+          <div class="menu-feature">
+            <strong>Fresh</strong>
+
+            <span>Prepared with quality ingredients and thoughtful flavour balance.</span>
+          </div>
+
+          <div class="menu-feature">
+            <strong>Curated</strong>
+
+            <span>A menu designed for premium dining and memorable occasions.</span>
+          </div>
+
+          <div class="menu-feature">
+            <strong>Elevated</strong>
+
+            <span>Classic favourites served with a refined rooftop restaurant touch.</span>
+          </div>
+        </div>
+
+        <ul class="category-nav reveal" id="categoryNav"></ul>
+
+        <div class="menu-grid" id="menuGrid" aria-live="polite"></div>
+
+        <div class="view-more-wrap" id="viewMoreWrap">
+          <button class="btn btn-primary" id="viewMoreBtn" type="button">View More</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="menu-cta">
+      <div class="menu-cta-box reveal">
+        <span class="eyebrow">Reservations</span>
+
+        <h2>Reserve your table for a better dining experience.</h2>
+
+        <p>Enjoy your favourites in an atmosphere designed for comfort, celebrations, and beautifully served rooftop meals.</p>
+
+        <a class="btn btn-primary" href="https://knovalab-demo.github.io/Runway-47/reservation/index.html">Book a Table</a>
       </div>
     </section>
   </main>
-  <div class="success-modal" id="successModal" role="dialog" aria-modal="true" aria-labelledby="successTitle" aria-hidden="true">
-    <div class="success-card">
-      <button class="modal-close" id="modalClose" type="button" aria-label="Close success message">×</button>
-      <div class="success-mark" aria-hidden="true">✓</div>
-      <h2 id="successTitle">Reservation Request Sent Successfully</h2>
-      <p>Someone from our support team will reach out within 24 hours.</p>
-    </div>
-  </div>
+
   <footer class="site-footer">
     <div class="footer-shell">
       <div class="footer-columns reveal">
@@ -1087,219 +1039,310 @@
           <a class="footer-brand-logo" href="https://knovalab-demo.github.io/Runway-47/" aria-label="RUNWAY47 home">
             <img src="https://i.pinimg.com/736x/49/9e/de/499ede9177588c4d29cc474c6f0bd0b9.jpg" alt="RUNWAY47 Logo" loading="lazy" />
           </a>
+
           <p class="footer-statement">Where flavour takes flight above the city skyline.</p>
         </div>
+
         <div class="footer-col">
           <h3>Explore</h3>
+
           <ul>
             <li>
               <a href="https://knovalab-demo.github.io/Runway-47/about/index.html">About</a>
             </li>
+
             <li>
               <a href="https://knovalab-demo.github.io/Runway-47/experience/index.html">Experience</a>
             </li>
+
             <li>
               <a href="https://knovalab-demo.github.io/Runway-47/gallery/index.html">Gallery</a>
             </li>
+
             <li>
               <a href="https://knovalab-demo.github.io/Runway-47/bar/index.html">After Dark</a>
             </li>
           </ul>
         </div>
+
         <div class="footer-col">
           <h3>Reservations</h3>
+
           <ul>
             <li>
               <a href="https://knovalab-demo.github.io/Runway-47/reservation/index.html">Reserve a Table</a>
             </li>
+
             <li>
               <a href="https://knovalab-demo.github.io/Runway-47/reservation/index.html">Private Events</a>
             </li>
+
             <li>
               <a href="https://knovalab-demo.github.io/Runway-47/reservation/index.html">Special Occasions</a>
             </li>
           </ul>
+
           <a class="btn btn-primary footer-reserve" href="https://knovalab-demo.github.io/Runway-47/reservation/index.html">Reserve Now</a>
         </div>
+
         <div class="footer-col">
           <h3>Contact</h3>
+
           <ul>
             <li>
               <a href="mailto:reservations@runway47.com">reservations@runway47.com</a>
             </li>
+
             <li>
               <a href="tel:+910000000047">+91 00000 00047</a>
             </li>
+
             <li>
               <span>Level 47 Skyline Avenue</span>
             </li>
           </ul>
         </div>
+
         <div class="footer-col">
           <h3>Hours</h3>
+
           <ul>
             <li>
               <span>Tue-Thu 6 PM - 11 PM</span>
             </li>
+
             <li>
               <span>Fri-Sat 6 PM - 1 AM</span>
             </li>
+
             <li>
               <span>Sun 5 PM - 11 PM</span>
             </li>
           </ul>
         </div>
       </div>
+
       <div class="footer-divider"></div>
+
       <div class="footer-lower">
         <div class="social-links" aria-label="Social links">
           <a class="social-link" href="https://www.instagram.com/" aria-label="Instagram">
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <rect x="4" y="4" width="16" height="16" rx="5"></rect>
+
               <circle cx="12" cy="12" r="3.5"></circle>
+
               <circle cx="17" cy="7" r="0.8"></circle>
             </svg>
           </a>
+
           <a class="social-link" href="https://www.facebook.com/" aria-label="Facebook">
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M14.5 8.2H16V5.6c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.5-4 4.2v2.3H7v2.9h2.6V22h3.1v-7.1h2.6l.4-2.9h-3V10c0-.9.2-1.8 1.8-1.8Z"></path>
             </svg>
           </a>
+
           <a class="social-link" href="https://www.google.com/maps" aria-label="Google Maps">
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M12 21s7-6.1 7-12a7 7 0 1 0-14 0c0 5.9 7 12 7 12Z"></path>
+
               <circle cx="12" cy="9" r="2.5"></circle>
             </svg>
           </a>
         </div>
+
         <p class="footer-copy">© 2026 RUNWAY47. All rights reserved.</p>
+
         <p class="footer-tagline">Where Flavour Takes Flight</p>
       </div>
     </div>
   </footer>
+
   <script>
-    const header = document.getElementById("siteHeader");
     const menuToggle = document.getElementById("menuToggle");
     const navLinks = document.querySelectorAll(".nav-links a");
     const revealItems = document.querySelectorAll(".reveal");
-    const intro = document.getElementById("intro");
-    const reservationForm = document.getElementById("reservationForm");
-    const submitButton = document.getElementById("submitButton");
-    const formNote = document.getElementById("formNote");
-    const successModal = document.getElementById("successModal");
-    const modalClose = document.getElementById("modalClose");
-    const emailSubject = document.getElementById("emailSubject");
-    const replyTo = document.getElementById("replyTo");
-    const customerName = document.getElementById("customerName");
-    const customerEmail = document.getElementById("customerEmail");
-    const reservationDate = document.getElementById("reservationDate");
-    let successTimer;
-    const setIntroParallax = () => {
-      if (!intro) {
-        return;
-      }
-      const offset = Math.min(window.scrollY * 0.12, 54);
-      intro.style.setProperty("--intro-parallax", `${offset}px`);
+    const categoryNav = document.getElementById("categoryNav");
+    const menuGrid = document.getElementById("menuGrid");
+    const viewMoreWrap = document.getElementById("viewMoreWrap");
+    const viewMoreBtn = document.getElementById("viewMoreBtn");
+
+    const menuData = {
+      Breakfast: [
+        ["Truffle Cloud Omelette", "Whipped eggs, black truffle, chive cream, toasted brioche.", "Rs. 740", "Chef's Pick", "https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=900&q=85"],
+        ["Gold Leaf Pancakes", "Buttermilk stack, saffron honey, mascarpone, toasted pistachio.", "Rs. 680", "Signature", "https://images.unsplash.com/photo-1528207776546-365bb710ee93?auto=format&fit=crop&w=900&q=85"],
+        ["Avocado Skyline Toast", "Sourdough, avocado silk, soft herbs, citrus oil, seed crunch.", "Rs. 620", "Bestseller", "https://images.unsplash.com/photo-1541519227354-08fa5d50c44d?auto=format&fit=crop&w=900&q=85"],
+        ["Smoked Salmon Croissant", "Butter croissant, dill creme, capers, salmon, pickled shallot.", "Rs. 860", "New", "https://images.unsplash.com/photo-1509722747041-616f39b57569?auto=format&fit=crop&w=900&q=85"],
+        ["Berry Granola Coupe", "Greek yoghurt, berry compote, almond granola, rose honey.", "Rs. 540", "", "https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=900&q=85"],
+        ["Brioche French Toast", "Caramelized brioche, vanilla cream, poached pear, bronze sugar.", "Rs. 690", "Signature", "https://images.unsplash.com/photo-1484723091739-30a097e8f929?auto=format&fit=crop&w=900&q=85"],
+        ["Runway Breakfast Plate", "Eggs, grilled tomato, mushrooms, chicken sausage, hash rosti.", "Rs. 820", "Bestseller", "https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?auto=format&fit=crop&w=900&q=85"],
+        ["Champagne Waffle", "Crisp waffle, berries, champagne syrup, chantilly.", "Rs. 760", "Signature", "https://images.unsplash.com/photo-1562376552-0d160a2f238d?auto=format&fit=crop&w=900&q=85"]
+      ],
+
+      Lunch: [
+        ["Charred Burrata Garden", "Burrata, flame grapes, heirloom tomato, basil oil, sea salt.", "Rs. 880", "Signature", "https://images.unsplash.com/photo-1529059997568-3d847b1154f0?auto=format&fit=crop&w=900&q=85"],
+        ["Saffron Prawn Risotto", "Arborio rice, prawns, saffron butter, aged parmesan.", "Rs. 1240", "Chef's Pick", "https://images.unsplash.com/photo-1476124369491-e7addf5db371?auto=format&fit=crop&w=900&q=85"],
+        ["Porcini Cappuccino Soup", "Porcini veloute, thyme foam, bronze garlic crumb.", "Rs. 640", "New", "https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=900&q=85"],
+        ["Pan-Seared Sea Bass", "Sea bass, fennel puree, citrus beurre blanc, herbs.", "Rs. 1380", "Bestseller", "https://images.unsplash.com/photo-1553621042-f6e147245754?auto=format&fit=crop&w=900&q=85"],
+        ["Short Rib Pappardelle", "Slow-braised rib, fresh pasta, smoked jus, parmesan snow.", "Rs. 1180", "Signature", "https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=900&q=85"],
+        ["Runway Mezze Board", "Labneh, olives, hummus, grilled flatbread, pickled vegetables.", "Rs. 940", "", "https://images.unsplash.com/photo-1543352634-a1c51d9f1fa7?auto=format&fit=crop&w=900&q=85"],
+        ["Herb Chicken Roulade", "Chicken roulade, asparagus, truffle mash, rosemary jus.", "Rs. 1060", "Chef's Pick", "https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=900&q=85"],
+        ["Wild Mushroom Tartine", "Country bread, mushrooms, whipped goat cheese, herb oil.", "Rs. 760", "New", "https://images.unsplash.com/photo-1505576399279-565b52d4ac71?auto=format&fit=crop&w=900&q=85"]
+      ],
+
+      "Signature Dining": [
+        ["47-Hour Lamb Shank", "Slow-cooked lamb, date jus, smoked aubergine, herb couscous.", "Rs. 1680", "Signature", "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=900&q=85"],
+        ["Wagyu Pepper Tenderloin", "Tenderloin, pepper glaze, potato pave, charred onion.", "Rs. 2450", "Chef's Pick", "https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=900&q=85"],
+        ["Black Cod Miso Silk", "Miso black cod, sesame greens, yuzu glaze, rice crisp.", "Rs. 1880", "Bestseller", "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=900&q=85"],
+        ["Forest Truffle Ravioli", "Handmade ravioli, ricotta, truffle butter, sage.", "Rs. 1360", "Signature", "https://images.unsplash.com/photo-1587740908075-9e245070dfaa?auto=format&fit=crop&w=900&q=85"],
+        ["Duck Confit Royale", "Crisp duck leg, cherry jus, carrot silk, hazelnut.", "Rs. 1580", "Chef's Pick", "https://images.unsplash.com/photo-1559847844-5315695dadae?auto=format&fit=crop&w=900&q=85"],
+        ["Butter Poached Lobster", "Lobster tail, saffron nage, fennel, bronze herbs.", "Rs. 2260", "Signature", "https://images.unsplash.com/photo-1559737558-2f5a35f4523b?auto=format&fit=crop&w=900&q=85"],
+        ["Smoked Cauliflower Steak", "Cauliflower, almond cream, caper raisin relish, herb ash.", "Rs. 980", "New", "https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=900&q=85"],
+        ["Runway Tasting Prelude", "A trio of seasonal bites from the chef's evening board.", "Rs. 1180", "Bestseller", "https://images.unsplash.com/photo-1551218808-94e220e084d2?auto=format&fit=crop&w=900&q=85"]
+      ],
+
+      Desserts: [
+        ["Cloud Nine Tiramisu", "Espresso silk, mascarpone, cocoa veil, gold crumble.", "Rs. 620", "Bestseller", "https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?auto=format&fit=crop&w=900&q=85"],
+        ["Saffron Creme Brulee", "Saffron custard, caramel glass, pistachio dust.", "Rs. 590", "Signature", "https://images.unsplash.com/photo-1470324161839-ce2bb6fa6bc3?auto=format&fit=crop&w=900&q=85"],
+        ["Chocolate Altitude", "Dark chocolate mousse, hazelnut praline, smoked salt.", "Rs. 680", "Chef's Pick", "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=900&q=85"],
+        ["Rose Lychee Pavlova", "Meringue, rose cream, lychee, raspberry mist.", "Rs. 640", "New", "https://images.unsplash.com/photo-1464305795204-6f5bbfc7fb81?auto=format&fit=crop&w=900&q=85"],
+        ["Pear Tarte Fine", "Caramelized pear, puff pastry, vanilla bean ice cream.", "Rs. 610", "", "https://images.unsplash.com/photo-1519915028121-7d3463d20b13?auto=format&fit=crop&w=900&q=85"],
+        ["Basque Skyline Cheesecake", "Burnt cheesecake, berry lacquer, almond lace.", "Rs. 650", "Signature", "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&w=900&q=85"],
+        ["Affogato No.47", "Vanilla gelato, espresso pour, cocoa nib brittle.", "Rs. 520", "Bestseller", "https://images.unsplash.com/photo-1499638673689-79a0b5115d87?auto=format&fit=crop&w=900&q=85"],
+        ["Pistachio Opera", "Pistachio sponge, chocolate ganache, coffee cream.", "Rs. 670", "Chef's Pick", "https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=900&q=85"]
+      ],
+
+      Beverages: [
+        ["Golden Hour Spritz", "Aperitif, citrus, sparkling wine, rosemary mist.", "Rs. 760", "Signature", "https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&w=900&q=85"],
+        ["Runway Old Fashioned", "Aged whisky, smoked sugar, orange, aromatic bitters.", "Rs. 920", "Bestseller", "https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=900&q=85"],
+        ["First Class Martini", "Gin, dry vermouth, olive brine, lemon oil.", "Rs. 860", "Chef's Pick", "https://images.unsplash.com/photo-1575023782549-62ca0d244b39?auto=format&fit=crop&w=900&q=85"],
+        ["Altitude Espresso", "Cold espresso, tonic, vanilla, bronze citrus peel.", "Rs. 480", "New", "https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=900&q=85"],
+        ["Rosemary Citrus Fizz", "Seedlip, grapefruit, rosemary, soda, sea salt.", "Rs. 520", "", "https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=900&q=85"],
+        ["Skyline Negroni", "Gin, bitter aperitif, vermouth, orange smoke.", "Rs. 840", "Signature", "https://images.unsplash.com/photo-1551538827-9c037cb4f32a?auto=format&fit=crop&w=900&q=85"],
+        ["Jasmine Gold Tea", "Jasmine tea, honey, lemon, edible gold shimmer.", "Rs. 420", "New", "https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&w=900&q=85"],
+        ["Reserve Wine Flight", "Three sommelier-selected pours for the current menu.", "Rs. 1480", "Chef's Pick", "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=900&q=85"]
+      ]
     };
+
+    let activeCategory = "Breakfast";
+    let expanded = false;
+
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.querySelectorAll(".nav-links a");
+    const revealItems = document.querySelectorAll(".reveal");
+    const categoryNav = document.getElementById("categoryNav");
+    const menuGrid = document.getElementById("menuGrid");
+    const viewMoreWrap = document.getElementById("viewMoreWrap");
+    const viewMoreBtn = document.getElementById("viewMoreBtn");
+
     const closeMenu = () => {
       document.body.classList.remove("menu-open");
       menuToggle.setAttribute("aria-expanded", "false");
       menuToggle.setAttribute("aria-label", "Open navigation menu");
     };
-    const showFormNote = (message) => {
-      formNote.textContent = message;
-      formNote.classList.add("visible");
+
+    const createCard = (item, index) => {
+      const [name, description, price, tag, image] = item;
+      const article = document.createElement("article");
+
+      article.className = "menu-card";
+      article.style.animationDelay = `${index * 70}ms`;
+
+      article.innerHTML = `
+        <div class="menu-image">
+          ${tag ? `<span class="tag">${tag}</span>` : ""}
+          <img src="${image}" alt="${name}" loading="lazy" />
+        </div>
+        <div class="menu-content">
+          <h3>${name}</h3>
+          <p>${description}</p>
+          <div class="menu-meta">
+            <span class="price">${price}</span>
+            <span class="card-cta" aria-hidden="true">+</span>
+          </div>
+        </div>
+      `;
+
+      return article;
     };
-    const hideFormNote = () => {
-      formNote.textContent = "";
-      formNote.classList.remove("visible");
+
+    const renderCategories = () => {
+      categoryNav.innerHTML = Object.keys(menuData)
+        .map((category) => `
+          <li>
+            <button class="category-btn ${category === activeCategory ? "active" : ""}" type="button" data-category="${category}">
+              ${category}
+            </button>
+          </li>
+        `)
+        .join("");
     };
-    const formatDate = (value) => {
-      if (!value) {
-        return "";
-      }
-      const date = new Date(`${value}T00:00:00`);
-      return date.toLocaleDateString("en-IN", {
-        weekday: "long",
-        year: "numeric",
-        month: "long",
-        day: "numeric"
+
+    const renderMenu = () => {
+      const items = menuData[activeCategory];
+      const visibleItems = expanded ? items : items.slice(0, 6);
+
+      menuGrid.innerHTML = "";
+
+      visibleItems.forEach((item, index) => {
+        menuGrid.appendChild(createCard(item, index));
       });
+
+      viewMoreWrap.classList.toggle("hidden", expanded || items.length <= 6);
     };
-    const formatTime = (value) => {
-      if (!value) {
-        return "";
+
+    const switchCategory = (category) => {
+      if (category === activeCategory) {
+        return;
       }
-      const [hours, minutes] = value.split(":");
-      const date = new Date();
-      date.setHours(Number(hours), Number(minutes));
-      return date.toLocaleTimeString("en-IN", {
-        hour: "numeric",
-        minute: "2-digit",
-        hour12: true
+
+      activeCategory = category;
+      expanded = false;
+
+      document.querySelectorAll(".category-btn").forEach((button) => {
+        button.classList.toggle("active", button.dataset.category === category);
       });
+
+      menuGrid.classList.add("switching");
+
+      window.setTimeout(() => {
+        renderMenu();
+        menuGrid.classList.remove("switching");
+      }, 260);
     };
-    const prepareSubmission = (formData) => {
-      const name = customerName.value.trim();
-      const email = customerEmail.value.trim();
-      const rawDate = formData.get("Reservation Date");
-      const rawTime = formData.get("Reservation Time");
-      replyTo.value = email;
-      emailSubject.value = `NEW ORDER - RUNWAY47 Reservation - ${name}`;
-      formData.set("_replyto", email);
-      formData.set("_subject", `NEW ORDER - RUNWAY47 Reservation - ${name}`);
-      if (rawDate) {
-        formData.set("Reservation Date", formatDate(rawDate));
-      }
-      if (rawTime) {
-        formData.set("Reservation Time", formatTime(rawTime));
-      }
-      if (!formData.get("Special Requests")) {
-        formData.set("Special Requests", "None provided");
-      }
-      return formData;
-    };
-    const openSuccessModal = () => {
-      clearTimeout(successTimer);
-      successModal.classList.add("active");
-      successModal.setAttribute("aria-hidden", "false");
-      document.body.classList.add("modal-open");
-      successTimer = window.setTimeout(() => {
-        closeSuccessModal();
-      }, 4600);
-    };
-    const closeSuccessModal = () => {
-      clearTimeout(successTimer);
-      successModal.classList.remove("active");
-      successModal.setAttribute("aria-hidden", "true");
-      document.body.classList.remove("modal-open");
-    };
+
     menuToggle.addEventListener("click", () => {
       const isOpen = document.body.classList.toggle("menu-open");
+
       menuToggle.setAttribute("aria-expanded", String(isOpen));
       menuToggle.setAttribute("aria-label", isOpen ? "Close navigation menu" : "Open navigation menu");
     });
+
     navLinks.forEach((link) => {
       link.addEventListener("click", closeMenu);
     });
-    modalClose.addEventListener("click", closeSuccessModal);
-    successModal.addEventListener("click", (event) => {
-      if (event.target === successModal) {
-        closeSuccessModal();
+
+    categoryNav.addEventListener("click", (event) => {
+      const button = event.target.closest(".category-btn");
+
+      if (!button) {
+        return;
       }
+
+      switchCategory(button.dataset.category);
     });
+
+    viewMoreBtn.addEventListener("click", () => {
+      expanded = true;
+      renderMenu();
+    });
+
     window.addEventListener("keydown", (event) => {
       if (event.key === "Escape") {
         closeMenu();
-        closeSuccessModal();
       }
     });
-    if (reservationDate) {
-      const today = new Date();
-      const offset = today.getTimezoneOffset();
-      const localDate = new Date(today.getTime() - offset * 60000).toISOString().split("T")[0];
-      reservationDate.setAttribute("min", localDate);
-    }
+
     if ("IntersectionObserver" in window) {
       const revealObserver = new IntersectionObserver(
         (entries) => {
@@ -1315,6 +1358,7 @@
           rootMargin: "0px 0px -40px 0px"
         }
       );
+
       revealItems.forEach((item, index) => {
         item.style.transitionDelay = `${Math.min(index % 4, 3) * 90}ms`;
         revealObserver.observe(item);
@@ -1322,58 +1366,9 @@
     } else {
       revealItems.forEach((item) => item.classList.add("visible"));
     }
-    reservationForm.addEventListener("submit", async (event) => {
-      event.preventDefault();
-      hideFormNote();
-      if (!reservationForm.checkValidity()) {
-        reservationForm.reportValidity();
-        return;
-      }
-      const originalButtonText = submitButton.textContent;
-      submitButton.disabled = true;
-      submitButton.textContent = "Sending...";
-      try {
-        const formData = prepareSubmission(new FormData(reservationForm));
-        const response = await fetch(reservationForm.action, {
-          method: "POST",
-          body: formData,
-          headers: {
-            Accept: "application/json"
-          }
-        });
-        if (!response.ok) {
-          throw new Error("Unable to submit reservation request.");
-        }
-        reservationForm.reset();
-        if (reservationDate) {
-          const today = new Date();
-          const offset = today.getTimezoneOffset();
-          const localDate = new Date(today.getTime() - offset * 60000).toISOString().split("T")[0];
-          reservationDate.setAttribute("min", localDate);
-        }
-        openSuccessModal();
-      } catch (error) {
-        showFormNote("We could not send your request just now. Please try again.");
-      } finally {
-        submitButton.disabled = false;
-        submitButton.textContent = originalButtonText;
-      }
-    });
-    let ticking = false;
-    window.addEventListener(
-      "scroll",
-      () => {
-        if (!ticking) {
-          window.requestAnimationFrame(() => {
-            setIntroParallax();
-            ticking = false;
-          });
-          ticking = true;
-        }
-      },
-      { passive: true }
-    );
-    setIntroParallax();
+
+    renderCategories();
+    renderMenu();
   </script>
 </body>
 </html>
