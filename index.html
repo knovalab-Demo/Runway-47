@@ -12,6 +12,7 @@
   <style>
     :root {
       --black: #050505;
+      --navbar-black: #080502;
       --soft-black: #111111;
       --gold: #c6a15b;
       --gold-light: #e3c37a;
@@ -66,8 +67,7 @@
       z-index: 1000;
       width: 100%;
       border-bottom: 1px solid rgba(198, 161, 91, 0.2);
-      background: linear-gradient(180deg, rgba(0, 0, 0, 0.82), rgba(0, 0, 0, 0.48));
-      backdrop-filter: blur(14px);
+      background: var(--navbar-black);
     }
 
     .nav {
@@ -729,7 +729,7 @@
         width: min(380px, 100%);
         padding: 34px 28px;
         border-left: 1px solid rgba(198, 161, 91, 0.24);
-        background: rgba(3, 3, 3, 0.96);
+        background: var(--navbar-black);
         flex-direction: column;
         gap: 22px;
         transform: translateX(100%);
