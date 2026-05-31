@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <meta
@@ -23,12 +24,10 @@
     :root {
       --black: #050505;
       --navbar-black: #080502;
-      --soft-black: #111111;
       --gold: #C89B5B;
       --gold-light: #E3C37A;
       --bronze: #9A6B3F;
-      --white: #F5F1EA;
-      --muted: rgba(245, 241, 234, 0.72);
+      --ivory: #F5F1EA;
       --text-soft: rgba(245, 241, 234, 0.75);
       --text-muted: rgba(245, 241, 234, 0.58);
       --line: rgba(200, 155, 91, 0.24);
@@ -54,7 +53,7 @@
       min-width: 320px;
       overflow-x: hidden;
       background: var(--black);
-      color: var(--white);
+      color: var(--ivory);
       font-family: var(--sans);
       line-height: 1.7;
     }
@@ -115,7 +114,7 @@
       border: 1px solid var(--gold);
       border-radius: 999px;
       background: transparent;
-      color: var(--white);
+      color: var(--ivory);
       cursor: pointer;
       font-size: 0.78rem;
       font-weight: 700;
@@ -171,7 +170,8 @@
       z-index: 1000;
       width: 100%;
       border-bottom: 1px solid rgba(200, 155, 91, 0.2);
-      background: var(--navbar-black);
+      background: rgba(8, 5, 2, 0.86);
+      backdrop-filter: blur(14px);
     }
 
     .nav {
@@ -236,15 +236,13 @@
     }
 
     .nav-links a:hover,
-    .nav-links a:focus-visible,
-    .nav-links a.active {
+    .nav-links a:focus-visible {
       color: var(--gold-light);
       outline: none;
     }
 
     .nav-links a:hover::after,
-    .nav-links a:focus-visible::after,
-    .nav-links a.active::after {
+    .nav-links a:focus-visible::after {
       transform: scaleX(1);
       transform-origin: left;
     }
@@ -270,7 +268,7 @@
       border: 1px solid rgba(200, 155, 91, 0.45);
       border-radius: 50%;
       background: rgba(0, 0, 0, 0.28);
-      color: var(--white);
+      color: var(--ivory);
       cursor: pointer;
     }
 
@@ -295,23 +293,41 @@
       transform: translateY(-6px) rotate(-45deg);
     }
 
-    .menu-hero {
+    .menu-page {
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 14% 22%, rgba(200, 155, 91, 0.13), transparent 28%),
+        radial-gradient(circle at 84% 12%, rgba(154, 107, 63, 0.14), transparent 30%),
+        linear-gradient(180deg, #050505, #11100e 42%, #050505);
+    }
+
+    .menu-intro {
       position: relative;
       display: flex;
       align-items: center;
       min-height: 100vh;
       min-height: 100svh;
-      padding: 128px 0 62px;
+      padding: 128px 0 72px;
       overflow: hidden;
       isolation: isolate;
       text-align: center;
-      background:
-        linear-gradient(90deg, rgba(5, 5, 5, 0.9), rgba(5, 5, 5, 0.58), rgba(5, 5, 5, 0.9)),
-        linear-gradient(180deg, rgba(5, 5, 5, 0.12), rgba(5, 5, 5, 0.96)),
-        url("https://i.pinimg.com/736x/7b/4b/74/7b4b749486185fb600ca413959d1d6fa.jpg") center / cover no-repeat;
     }
 
-    .menu-hero::after {
+    .menu-intro::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      background:
+        linear-gradient(90deg, rgba(5, 5, 5, 0.94), rgba(5, 5, 5, 0.58), rgba(5, 5, 5, 0.9)),
+        linear-gradient(180deg, rgba(5, 5, 5, 0.2), rgba(5, 5, 5, 0.96)),
+        url("https://i.pinimg.com/736x/7b/4b/74/7b4b749486185fb600ca413959d1d6fa.jpg") center / cover no-repeat;
+      transform: translate3d(0, var(--intro-parallax, 0px), 0) scale(1.04);
+      will-change: transform;
+    }
+
+    .menu-intro::after {
       content: "";
       position: absolute;
       inset: auto 0 0;
@@ -320,292 +336,345 @@
       background: linear-gradient(180deg, transparent, var(--black));
     }
 
-    .menu-hero-content {
-      width: min(900px, 100%);
+    .intro-content {
+      position: relative;
+      max-width: 820px;
       margin: 0 auto;
     }
 
-    .menu-hero .eyebrow {
+    .intro-content .eyebrow {
       justify-content: center;
+      opacity: 0;
+      animation: fadeUp 1000ms 180ms var(--ease) forwards;
     }
 
-    .menu-hero .eyebrow::after {
+    .intro-content .eyebrow::after {
       content: "";
       width: 34px;
       height: 1px;
       background: linear-gradient(90deg, var(--gold), transparent);
     }
 
-    .menu-hero h1 {
+    .intro-content h1 {
       margin-top: 18px;
       font-family: var(--serif);
-      font-size: clamp(3.2rem, 7.4vw, 7rem);
+      font-size: clamp(3.5rem, 8vw, 7.5rem);
       font-weight: 700;
-      line-height: 0.92;
-      letter-spacing: 0.02em;
+      letter-spacing: 0.04em;
+      line-height: 0.88;
+      opacity: 0;
       text-shadow: 0 22px 68px rgba(0, 0, 0, 0.74);
+      animation: fadeUp 1050ms 320ms var(--ease) forwards;
     }
 
-    .menu-hero p {
-      max-width: 720px;
+    .intro-content p {
+      max-width: 680px;
       margin: 24px auto 0;
       color: rgba(245, 241, 234, 0.78);
-      font-size: 1.02rem;
       font-weight: 300;
-      line-height: 1.8;
+      opacity: 0;
+      animation: fadeUp 1050ms 480ms var(--ease) forwards;
     }
 
-    .menu-panel {
+    .intro-divider {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 16px;
+      width: min(430px, 100%);
+      margin: 34px auto 0;
+      color: rgba(200, 155, 91, 0.84);
+      font-family: var(--serif);
+      font-size: 0.86rem;
+      letter-spacing: 0.18em;
+      opacity: 0;
+      animation: fadeUp 1050ms 640ms var(--ease) forwards;
+    }
+
+    .intro-divider::before,
+    .intro-divider::after {
+      content: "";
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(200, 155, 91, 0.72));
+    }
+
+    .intro-divider::after {
+      background: linear-gradient(90deg, rgba(200, 155, 91, 0.72), transparent);
+    }
+
+    .menu-board {
       position: relative;
       min-height: 100vh;
-      padding: 82px 0;
-      background:
-        radial-gradient(circle at 12% 18%, rgba(200, 155, 91, 0.1), transparent 26%),
-        radial-gradient(circle at 88% 24%, rgba(154, 107, 63, 0.12), transparent 28%),
-        linear-gradient(180deg, #050505, #100f0d 48%, #050505);
+      padding: 82px 0 110px;
     }
 
-    .section-head {
-      max-width: 760px;
-      margin: 0 auto 36px;
-      text-align: center;
-    }
-
-    .section-head .eyebrow {
-      justify-content: center;
-    }
-
-    .section-head .eyebrow::after {
+    .menu-board::before {
       content: "";
-      width: 34px;
-      height: 1px;
-      background: linear-gradient(90deg, var(--gold), transparent);
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 18% 30%, rgba(154, 107, 63, 0.16), transparent 30%),
+        radial-gradient(circle at 86% 62%, rgba(200, 155, 91, 0.1), transparent 32%);
+      pointer-events: none;
     }
 
-    .section-head h2 {
-      margin-top: 14px;
-      font-family: var(--serif);
-      font-size: clamp(2.2rem, 4.8vw, 4.5rem);
-      font-weight: 600;
-      line-height: 1;
-    }
-
-    .section-head p {
-      margin-top: 16px;
-      color: var(--muted);
-      line-height: 1.8;
-    }
-
-    .menu-feature-strip {
+    .menu-head {
+      position: relative;
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 16px;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, 0.62fr);
+      align-items: end;
+      gap: 32px;
       margin-bottom: 34px;
     }
 
-    .menu-feature {
-      min-height: 128px;
-      padding: 22px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: rgba(245, 241, 234, 0.035);
-      text-align: center;
-    }
-
-    .menu-feature strong {
-      display: block;
-      margin-bottom: 6px;
-      color: var(--gold-light);
+    .section-title {
+      margin-top: 16px;
+      color: var(--ivory);
       font-family: var(--serif);
-      font-size: 1.42rem;
+      font-size: clamp(2.3rem, 5.6vw, 5rem);
       font-weight: 600;
+      line-height: 0.98;
     }
 
-    .menu-feature span {
-      color: rgba(245, 241, 234, 0.64);
-      font-size: 0.88rem;
+    .section-copy {
+      color: var(--text-soft);
+      font-size: 1rem;
+      font-weight: 300;
+      line-height: 1.85;
+    }
+
+    .category-shell {
+      position: sticky;
+      top: 96px;
+      z-index: 20;
+      margin-bottom: 36px;
+      padding: 10px;
+      border: 1px solid rgba(200, 155, 91, 0.18);
+      border-radius: 999px;
+      background: rgba(8, 5, 2, 0.7);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 18px 54px rgba(0, 0, 0, 0.28);
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .category-shell::-webkit-scrollbar {
+      display: none;
     }
 
     .category-nav {
       display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-bottom: 34px;
+      gap: 8px;
+      min-width: max-content;
       list-style: none;
     }
 
     .category-btn {
+      position: relative;
       min-height: 44px;
-      padding: 0 20px;
-      border: 1px solid rgba(200, 155, 91, 0.28);
+      padding: 0 18px;
+      border: 1px solid transparent;
       border-radius: 999px;
-      background: rgba(245, 241, 234, 0.04);
-      color: rgba(245, 241, 234, 0.76);
+      background: transparent;
+      color: rgba(245, 241, 234, 0.72);
       cursor: pointer;
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       font-weight: 700;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      transition: transform 260ms var(--ease), background 260ms var(--ease), border-color 260ms var(--ease), color 260ms var(--ease);
+      transition: color 320ms ease, border-color 320ms ease, background 320ms ease, box-shadow 320ms ease, transform 320ms var(--ease);
+      overflow: hidden;
+    }
+
+    .category-btn::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(110deg, transparent, rgba(245, 241, 234, 0.16), transparent);
+      transform: translateX(-130%);
+      transition: transform 700ms var(--ease);
     }
 
     .category-btn:hover,
     .category-btn:focus-visible,
     .category-btn.active {
-      border-color: var(--gold);
-      background: var(--gold);
-      color: #080808;
-      transform: translateY(-2px);
+      color: var(--ivory);
+      border-color: rgba(200, 155, 91, 0.42);
+      background: rgba(245, 241, 234, 0.06);
+      box-shadow: inset 0 0 22px rgba(200, 155, 91, 0.08);
       outline: none;
     }
 
+    .category-btn:hover::after,
+    .category-btn:focus-visible::after,
+    .category-btn.active::after {
+      transform: translateX(130%);
+    }
+
     .menu-grid {
+      position: relative;
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 22px;
-      transition: opacity 260ms ease, transform 260ms ease;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+      min-height: 640px;
+      transition: filter 320ms ease, opacity 320ms ease, transform 320ms var(--ease);
     }
 
     .menu-grid.switching {
       opacity: 0;
-      transform: translateY(12px);
+      filter: blur(10px);
+      transform: translateY(16px) scale(0.985);
     }
 
     .menu-card {
+      position: relative;
+      display: flex;
+      min-height: 430px;
       overflow: hidden;
       border: 1px solid rgba(200, 155, 91, 0.18);
       border-radius: 8px;
       background:
-        linear-gradient(180deg, rgba(245, 241, 234, 0.06), rgba(245, 241, 234, 0.02)),
-        #0c0c0c;
-      box-shadow: var(--shadow);
-      animation: cardIn 560ms var(--ease) both;
-      transition: transform 320ms var(--ease), border-color 320ms var(--ease);
+        linear-gradient(180deg, rgba(245, 241, 234, 0.08), rgba(245, 241, 234, 0.025)),
+        rgba(5, 5, 5, 0.58);
+      box-shadow: 0 18px 56px rgba(0, 0, 0, 0.3);
+      flex-direction: column;
+      opacity: 0;
+      transform: translateY(24px) scale(0.98);
+      animation: cardIn 760ms var(--ease) forwards;
+      transition: transform 520ms var(--ease), border-color 520ms var(--ease), box-shadow 520ms var(--ease), background 520ms ease;
+    }
+
+    .menu-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      background: linear-gradient(115deg, transparent 20%, rgba(200, 155, 91, 0.14), transparent 54%);
+      transform: translateX(-120%);
+      transition: transform 900ms var(--ease);
+      pointer-events: none;
     }
 
     .menu-card:hover {
-      border-color: rgba(200, 155, 91, 0.48);
-      transform: translateY(-7px);
+      border-color: rgba(200, 155, 91, 0.54);
+      background: linear-gradient(180deg, rgba(245, 241, 234, 0.11), rgba(245, 241, 234, 0.035));
+      box-shadow: 0 30px 86px rgba(0, 0, 0, 0.45), 0 0 34px rgba(200, 155, 91, 0.1);
+      transform: translateY(-10px);
+    }
+
+    .menu-card:hover::before {
+      transform: translateX(120%);
     }
 
     .menu-image {
       position: relative;
       height: 210px;
       overflow: hidden;
+      background: #151515;
     }
 
     .menu-image img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 700ms var(--ease);
+      filter: saturate(0.95) contrast(1.08);
+      transition: transform 1000ms var(--ease), filter 1000ms ease;
     }
 
     .menu-card:hover .menu-image img {
-      transform: scale(1.04);
+      transform: scale(1.08);
+      filter: saturate(1.06) contrast(1.12);
+    }
+
+    .menu-image::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 42%, rgba(5, 5, 5, 0.82));
     }
 
     .tag {
       position: absolute;
-      top: 14px;
-      left: 14px;
-      z-index: 2;
-      padding: 7px 10px;
-      border: 1px solid rgba(200, 155, 91, 0.5);
+      left: 16px;
+      top: 16px;
+      z-index: 3;
+      padding: 7px 11px;
+      border: 1px solid rgba(200, 155, 91, 0.46);
       border-radius: 999px;
-      background: rgba(5, 5, 5, 0.72);
+      background: rgba(5, 5, 5, 0.64);
+      backdrop-filter: blur(12px);
       color: var(--gold-light);
-      font-size: 0.66rem;
+      font-size: 0.62rem;
       font-weight: 700;
       letter-spacing: 0.12em;
       text-transform: uppercase;
     }
 
     .menu-content {
-      padding: 20px;
+      position: relative;
+      z-index: 4;
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      padding: 22px;
     }
 
-    .menu-content h3 {
-      color: var(--white);
+    .menu-card h3 {
       font-family: var(--serif);
-      font-size: 1.55rem;
+      font-size: clamp(1.35rem, 1.8vw, 1.7rem);
       font-weight: 600;
       line-height: 1.08;
     }
 
-    .menu-content p {
-      min-height: 70px;
-      margin-top: 10px;
+    .menu-card p {
+      margin-top: 13px;
       color: rgba(245, 241, 234, 0.66);
       font-size: 0.9rem;
-      line-height: 1.65;
     }
 
     .menu-meta {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 16px;
-      margin-top: 16px;
-      padding-top: 14px;
-      border-top: 1px solid rgba(200, 155, 91, 0.16);
+      gap: 14px;
+      margin-top: auto;
+      padding-top: 24px;
     }
 
     .price {
       color: var(--gold-light);
-      font-size: 1.02rem;
-      font-weight: 700;
+      font-family: var(--serif);
+      font-size: 1.45rem;
+      font-weight: 600;
     }
 
     .card-cta {
-      display: inline-grid;
+      display: grid;
+      width: 42px;
+      height: 42px;
       place-items: center;
-      width: 34px;
-      height: 34px;
       border: 1px solid rgba(200, 155, 91, 0.28);
       border-radius: 50%;
+      background: rgba(5, 5, 5, 0.32);
+      color: var(--ivory);
+      transition: border-color 400ms ease, background 400ms ease, transform 400ms var(--ease), color 400ms ease;
+    }
+
+    .menu-card:hover .card-cta {
+      border-color: rgba(200, 155, 91, 0.74);
+      background: rgba(200, 155, 91, 0.16);
       color: var(--gold);
+      transform: rotate(-12deg);
     }
 
     .view-more-wrap {
       display: flex;
       justify-content: center;
-      margin-top: 36px;
+      margin-top: 42px;
     }
 
     .view-more-wrap.hidden {
       display: none;
-    }
-
-    .menu-cta {
-      display: grid;
-      align-items: center;
-      min-height: 72vh;
-      padding: 72px 20px;
-      background:
-        linear-gradient(rgba(5, 5, 5, 0.82), rgba(5, 5, 5, 0.82)),
-        url("https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1600&auto=format&fit=crop") center / cover no-repeat;
-      text-align: center;
-    }
-
-    .menu-cta-box {
-      width: min(860px, 100%);
-      margin: 0 auto;
-    }
-
-    .menu-cta-box h2 {
-      font-family: var(--serif);
-      font-size: clamp(2.2rem, 4.8vw, 4.5rem);
-      font-weight: 600;
-      line-height: 1;
-    }
-
-    .menu-cta-box p {
-      max-width: 660px;
-      margin: 18px auto 28px;
-      color: rgba(245, 241, 234, 0.74);
-      line-height: 1.8;
     }
 
     .site-footer {
@@ -761,8 +830,8 @@
 
     .reveal {
       opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 850ms var(--ease), transform 850ms var(--ease);
+      transform: translateY(34px);
+      transition: opacity 900ms var(--ease), transform 900ms var(--ease);
     }
 
     .reveal.visible {
@@ -770,10 +839,10 @@
       transform: translateY(0);
     }
 
-    @keyframes cardIn {
+    @keyframes fadeUp {
       from {
         opacity: 0;
-        transform: translateY(18px);
+        transform: translateY(28px);
       }
 
       to {
@@ -782,12 +851,21 @@
       }
     }
 
-    @media (max-width: 1020px) {
-      .menu-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+    @keyframes cardIn {
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
       }
+    }
 
-      .menu-feature-strip {
+    @media (max-width: 1180px) {
+      .menu-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 1040px) {
+      .menu-head {
         grid-template-columns: 1fr;
       }
 
@@ -845,9 +923,13 @@
       .nav-reserve {
         display: none;
       }
+
+      .menu-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 720px) {
       .container {
         width: min(100% - 28px, 1180px);
       }
@@ -860,30 +942,35 @@
         height: 55px;
       }
 
-      .menu-hero {
+      .menu-intro {
         align-items: end;
-        padding: 112px 0 48px;
+        padding: 112px 0 52px;
       }
 
-      .menu-panel {
-        padding: 58px 0;
+      .intro-content h1 {
+        font-size: clamp(3.2rem, 16vw, 5.2rem);
+      }
+
+      .menu-board {
+        padding: 58px 0 78px;
+      }
+
+      .category-shell {
+        top: 82px;
+        border-radius: 22px;
       }
 
       .menu-grid {
         grid-template-columns: 1fr;
-      }
-
-      .menu-image {
-        height: 240px;
-      }
-
-      .menu-content p {
         min-height: auto;
       }
 
-      .menu-cta {
-        min-height: 62vh;
-        padding: 58px 18px;
+      .menu-card {
+        min-height: auto;
+      }
+
+      .menu-image {
+        height: 260px;
       }
 
       .site-footer {
@@ -946,10 +1033,6 @@
         </li>
 
         <li>
-          <a class="active" href="https://knovalab-demo.github.io/Runway-47/menu/index.html">Menu</a>
-        </li>
-
-        <li>
           <a href="https://knovalab-demo.github.io/Runway-47/reservation/index.html">Reservations</a>
         </li>
       </ul>
@@ -966,68 +1049,46 @@
     </nav>
   </header>
 
-  <main>
-    <section class="menu-hero">
+  <main class="menu-page">
+    <section class="menu-intro" id="menuIntro">
       <div class="container">
-        <div class="menu-hero-content">
+        <div class="intro-content">
           <span class="eyebrow">Curated Dining Selection</span>
 
-          <h1>Our Menu</h1>
+          <h1>RUNWAY47 Menu</h1>
 
-          <p>From golden-hour plates to after-dark cocktails, every course is composed for altitude, elegance, and a table above the city.</p>
+          <p>
+            Explore a refined rooftop dining menu shaped around fine ingredients, polished presentation, and memorable moments above the city skyline.
+          </p>
+
+          <div class="intro-divider">WHERE FLAVOUR TAKES FLIGHT</div>
         </div>
       </div>
     </section>
 
-    <section class="menu-panel">
+    <section class="menu-board">
       <div class="container">
-        <div class="section-head reveal">
-          <span class="eyebrow">Explore Categories</span>
+        <div class="menu-head reveal">
+          <div>
+            <span class="eyebrow">Explore Categories</span>
 
-          <h2>Choose Your Course</h2>
+            <h2 class="section-title">Choose Your Course</h2>
+          </div>
 
-          <p>Browse seasonal signatures, refined comfort plates, desserts, and beverage selections crafted for the RUNWAY47 rooftop experience.</p>
+          <p class="section-copy">
+            From breakfast signatures to chef-led evening plates, each category has been curated for the RUNWAY47 fine-dining experience.
+          </p>
         </div>
 
-        <div class="menu-feature-strip reveal">
-          <div class="menu-feature">
-            <strong>Fresh</strong>
-
-            <span>Prepared with quality ingredients and thoughtful flavour balance.</span>
-          </div>
-
-          <div class="menu-feature">
-            <strong>Curated</strong>
-
-            <span>A menu designed for premium dining and memorable occasions.</span>
-          </div>
-
-          <div class="menu-feature">
-            <strong>Elevated</strong>
-
-            <span>Classic favourites served with a refined rooftop restaurant touch.</span>
-          </div>
+        <div class="category-shell reveal">
+          <ul class="category-nav" id="categoryNav"></ul>
         </div>
-
-        <ul class="category-nav reveal" id="categoryNav"></ul>
 
         <div class="menu-grid" id="menuGrid" aria-live="polite"></div>
 
         <div class="view-more-wrap" id="viewMoreWrap">
           <button class="btn btn-primary" id="viewMoreBtn" type="button">View More</button>
         </div>
-      </div>
-    </section>
-
-    <section class="menu-cta">
-      <div class="menu-cta-box reveal">
-        <span class="eyebrow">Reservations</span>
-
-        <h2>Reserve your table for a better dining experience.</h2>
-
-        <p>Enjoy your favourites in an atmosphere designed for comfort, celebrations, and beautifully served rooftop meals.</p>
-
-        <a class="btn btn-primary" href="https://knovalab-demo.github.io/Runway-47/reservation/index.html">Book a Table</a>
       </div>
     </section>
   </main>
@@ -1162,6 +1223,7 @@
     const menuToggle = document.getElementById("menuToggle");
     const navLinks = document.querySelectorAll(".nav-links a");
     const revealItems = document.querySelectorAll(".reveal");
+    const menuIntro = document.getElementById("menuIntro");
     const categoryNav = document.getElementById("categoryNav");
     const menuGrid = document.getElementById("menuGrid");
     const viewMoreWrap = document.getElementById("viewMoreWrap");
@@ -1173,9 +1235,11 @@
         ["Gold Leaf Pancakes", "Buttermilk stack, saffron honey, mascarpone, toasted pistachio.", "Rs. 680", "Signature", "https://images.unsplash.com/photo-1528207776546-365bb710ee93?auto=format&fit=crop&w=900&q=85"],
         ["Avocado Skyline Toast", "Sourdough, avocado silk, soft herbs, citrus oil, seed crunch.", "Rs. 620", "Bestseller", "https://images.unsplash.com/photo-1541519227354-08fa5d50c44d?auto=format&fit=crop&w=900&q=85"],
         ["Smoked Salmon Croissant", "Butter croissant, dill creme, capers, salmon, pickled shallot.", "Rs. 860", "New", "https://images.unsplash.com/photo-1509722747041-616f39b57569?auto=format&fit=crop&w=900&q=85"],
-        ["Berry Granola Coupe", "Greek yoghurt, berry compote, almond granola, rose honey.", "Rs. 540", "", "https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=900&q=85"],
+        ["Caviar Egg Cocotte", "Slow-baked egg, creme fraiche, caviar, potato crisp.", "Rs. 980", "Chef's Pick", "https://images.unsplash.com/photo-1482049016688-2d3e1b311543?auto=format&fit=crop&w=900&q=85"],
+        ["Berry Granola Coupe", "Greek yoghurt, berry compote, almond granola, rose honey.", "Rs. 540", "New", "https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=900&q=85"],
         ["Brioche French Toast", "Caramelized brioche, vanilla cream, poached pear, bronze sugar.", "Rs. 690", "Signature", "https://images.unsplash.com/photo-1484723091739-30a097e8f929?auto=format&fit=crop&w=900&q=85"],
         ["Runway Breakfast Plate", "Eggs, grilled tomato, mushrooms, chicken sausage, hash rosti.", "Rs. 820", "Bestseller", "https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?auto=format&fit=crop&w=900&q=85"],
+        ["Citrus Ricotta Bowl", "Ricotta mousse, citrus segments, basil syrup, toasted seeds.", "Rs. 590", "", "https://images.unsplash.com/photo-1494390248081-4e521a5940db?auto=format&fit=crop&w=900&q=85"],
         ["Champagne Waffle", "Crisp waffle, berries, champagne syrup, chantilly.", "Rs. 760", "Signature", "https://images.unsplash.com/photo-1562376552-0d160a2f238d?auto=format&fit=crop&w=900&q=85"]
       ],
 
@@ -1187,7 +1251,9 @@
         ["Short Rib Pappardelle", "Slow-braised rib, fresh pasta, smoked jus, parmesan snow.", "Rs. 1180", "Signature", "https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=900&q=85"],
         ["Runway Mezze Board", "Labneh, olives, hummus, grilled flatbread, pickled vegetables.", "Rs. 940", "", "https://images.unsplash.com/photo-1543352634-a1c51d9f1fa7?auto=format&fit=crop&w=900&q=85"],
         ["Herb Chicken Roulade", "Chicken roulade, asparagus, truffle mash, rosemary jus.", "Rs. 1060", "Chef's Pick", "https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=900&q=85"],
-        ["Wild Mushroom Tartine", "Country bread, mushrooms, whipped goat cheese, herb oil.", "Rs. 760", "New", "https://images.unsplash.com/photo-1505576399279-565b52d4ac71?auto=format&fit=crop&w=900&q=85"]
+        ["Wild Mushroom Tartine", "Country bread, mushrooms, whipped goat cheese, herb oil.", "Rs. 760", "New", "https://images.unsplash.com/photo-1505576399279-565b52d4ac71?auto=format&fit=crop&w=900&q=85"],
+        ["Lobster Club", "Lobster, brioche, crisp lettuce, tomato, champagne aioli.", "Rs. 1460", "Signature", "https://images.unsplash.com/photo-1559737558-2f5a35f4523b?auto=format&fit=crop&w=900&q=85"],
+        ["Pearl Barley Pilaf", "Pearl barley, roasted roots, almonds, lemon herb dressing.", "Rs. 720", "", "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=900&q=85"]
       ],
 
       "Signature Dining": [
@@ -1195,9 +1261,11 @@
         ["Wagyu Pepper Tenderloin", "Tenderloin, pepper glaze, potato pave, charred onion.", "Rs. 2450", "Chef's Pick", "https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=900&q=85"],
         ["Black Cod Miso Silk", "Miso black cod, sesame greens, yuzu glaze, rice crisp.", "Rs. 1880", "Bestseller", "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=900&q=85"],
         ["Forest Truffle Ravioli", "Handmade ravioli, ricotta, truffle butter, sage.", "Rs. 1360", "Signature", "https://images.unsplash.com/photo-1587740908075-9e245070dfaa?auto=format&fit=crop&w=900&q=85"],
+        ["Scallop Gold Crudo", "Diver scallops, citrus pearls, chili oil, micro herbs.", "Rs. 1520", "New", "https://images.unsplash.com/photo-1625944230945-1b7dd3b949ab?auto=format&fit=crop&w=900&q=85"],
         ["Duck Confit Royale", "Crisp duck leg, cherry jus, carrot silk, hazelnut.", "Rs. 1580", "Chef's Pick", "https://images.unsplash.com/photo-1559847844-5315695dadae?auto=format&fit=crop&w=900&q=85"],
         ["Butter Poached Lobster", "Lobster tail, saffron nage, fennel, bronze herbs.", "Rs. 2260", "Signature", "https://images.unsplash.com/photo-1559737558-2f5a35f4523b?auto=format&fit=crop&w=900&q=85"],
         ["Smoked Cauliflower Steak", "Cauliflower, almond cream, caper raisin relish, herb ash.", "Rs. 980", "New", "https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=900&q=85"],
+        ["Caviar Potato Millefeuille", "Layered potato, creme fraiche, caviar, chive dust.", "Rs. 1480", "Chef's Pick", "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=900&q=85"],
         ["Runway Tasting Prelude", "A trio of seasonal bites from the chef's evening board.", "Rs. 1180", "Bestseller", "https://images.unsplash.com/photo-1551218808-94e220e084d2?auto=format&fit=crop&w=900&q=85"]
       ],
 
@@ -1208,8 +1276,10 @@
         ["Rose Lychee Pavlova", "Meringue, rose cream, lychee, raspberry mist.", "Rs. 640", "New", "https://images.unsplash.com/photo-1464305795204-6f5bbfc7fb81?auto=format&fit=crop&w=900&q=85"],
         ["Pear Tarte Fine", "Caramelized pear, puff pastry, vanilla bean ice cream.", "Rs. 610", "", "https://images.unsplash.com/photo-1519915028121-7d3463d20b13?auto=format&fit=crop&w=900&q=85"],
         ["Basque Skyline Cheesecake", "Burnt cheesecake, berry lacquer, almond lace.", "Rs. 650", "Signature", "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&w=900&q=85"],
+        ["Mango Gold Sphere", "Mango mousse, passion fruit core, coconut snow.", "Rs. 620", "New", "https://images.unsplash.com/photo-1488477304112-4944851de03d?auto=format&fit=crop&w=900&q=85"],
         ["Affogato No.47", "Vanilla gelato, espresso pour, cocoa nib brittle.", "Rs. 520", "Bestseller", "https://images.unsplash.com/photo-1499638673689-79a0b5115d87?auto=format&fit=crop&w=900&q=85"],
-        ["Pistachio Opera", "Pistachio sponge, chocolate ganache, coffee cream.", "Rs. 670", "Chef's Pick", "https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=900&q=85"]
+        ["Pistachio Opera", "Pistachio sponge, chocolate ganache, coffee cream.", "Rs. 670", "Chef's Pick", "https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=900&q=85"],
+        ["Champagne Sorbet Flight", "Three seasonal sorbets with citrus and mint.", "Rs. 560", "", "https://images.unsplash.com/photo-1501443762994-82bd5dace89a?auto=format&fit=crop&w=900&q=85"]
       ],
 
       Beverages: [
@@ -1220,32 +1290,49 @@
         ["Rosemary Citrus Fizz", "Seedlip, grapefruit, rosemary, soda, sea salt.", "Rs. 520", "", "https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=900&q=85"],
         ["Skyline Negroni", "Gin, bitter aperitif, vermouth, orange smoke.", "Rs. 840", "Signature", "https://images.unsplash.com/photo-1551538827-9c037cb4f32a?auto=format&fit=crop&w=900&q=85"],
         ["Jasmine Gold Tea", "Jasmine tea, honey, lemon, edible gold shimmer.", "Rs. 420", "New", "https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&w=900&q=85"],
-        ["Reserve Wine Flight", "Three sommelier-selected pours for the current menu.", "Rs. 1480", "Chef's Pick", "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=900&q=85"]
+        ["Reserve Wine Flight", "Three sommelier-selected pours for the current menu.", "Rs. 1480", "Chef's Pick", "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=900&q=85"],
+        ["Cucumber Mint Cooler", "Cucumber, mint, lime, sparkling water, mineral salt.", "Rs. 460", "", "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=900&q=85"],
+        ["Champagne by the Glass", "Curated brut champagne served chilled tableside.", "Rs. 1320", "Signature", "https://images.unsplash.com/photo-1547595628-c61a29f496f0?auto=format&fit=crop&w=900&q=85"]
+      ],
+
+      "Chef Specials": [
+        ["Tableside Truffle Pasta", "Fresh tagliolini finished tableside with truffle and parmesan.", "Rs. 1780", "Chef's Pick", "https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?auto=format&fit=crop&w=900&q=85"],
+        ["Flame-Kissed Tuna", "Seared tuna, ponzu pearls, sesame, wasabi leaf.", "Rs. 1620", "Signature", "https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?auto=format&fit=crop&w=900&q=85"],
+        ["Bronze Butter Chicken", "Charred chicken, makhani silk, fenugreek, saffron rice.", "Rs. 1280", "Bestseller", "https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?auto=format&fit=crop&w=900&q=85"],
+        ["Oyster Caviar Pairing", "Chilled oysters, caviar, champagne mignonette.", "Rs. 2200", "New", "https://images.unsplash.com/photo-1603903631889-b5f3ba4d5b9b?auto=format&fit=crop&w=900&q=85"],
+        ["Rooftop Seafood Plateau", "Prawns, lobster, oysters, crab, citrus aioli.", "Rs. 3200", "Signature", "https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?auto=format&fit=crop&w=900&q=85"],
+        ["Charcoal Paneer Royale", "Paneer, smoked tomato velvet, fenugreek cream.", "Rs. 960", "New", "https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?auto=format&fit=crop&w=900&q=85"],
+        ["Aged Duck Breast", "Duck breast, plum jus, beetroot, toasted spice.", "Rs. 1720", "Chef's Pick", "https://images.unsplash.com/photo-1574484284002-952d92456975?auto=format&fit=crop&w=900&q=85"],
+        ["Seven-Course Ascent", "A seasonal tasting path designed by the RUNWAY47 kitchen.", "Rs. 4700", "Signature", "https://images.unsplash.com/photo-1546039907-7fa05f864c02?auto=format&fit=crop&w=900&q=85"],
+        ["Midnight Caviar Toast", "Brioche, caviar, egg silk, chive, creme fraiche.", "Rs. 1850", "Bestseller", "https://images.unsplash.com/photo-1600891964092-4316c288032e?auto=format&fit=crop&w=900&q=85"],
+        ["Chef's Dessert Casket", "Five petite desserts served with gold-dusted chocolate.", "Rs. 1350", "Chef's Pick", "https://images.unsplash.com/photo-1547414368-ac947d00b91d?auto=format&fit=crop&w=900&q=85"]
       ]
     };
 
     let activeCategory = "Breakfast";
     let expanded = false;
 
-    const menuToggle = document.getElementById("menuToggle");
-    const navLinks = document.querySelectorAll(".nav-links a");
-    const revealItems = document.querySelectorAll(".reveal");
-    const categoryNav = document.getElementById("categoryNav");
-    const menuGrid = document.getElementById("menuGrid");
-    const viewMoreWrap = document.getElementById("viewMoreWrap");
-    const viewMoreBtn = document.getElementById("viewMoreBtn");
-
     const closeMenu = () => {
       document.body.classList.remove("menu-open");
+
       menuToggle.setAttribute("aria-expanded", "false");
+
       menuToggle.setAttribute("aria-label", "Open navigation menu");
+    };
+
+    const setIntroParallax = () => {
+      const offset = Math.min(window.scrollY * 0.12, 54);
+
+      menuIntro.style.setProperty("--intro-parallax", `${offset}px`);
     };
 
     const createCard = (item, index) => {
       const [name, description, price, tag, image] = item;
+
       const article = document.createElement("article");
 
       article.className = "menu-card";
+
       article.style.animationDelay = `${index * 70}ms`;
 
       article.innerHTML = `
@@ -1280,7 +1367,8 @@
 
     const renderMenu = () => {
       const items = menuData[activeCategory];
-      const visibleItems = expanded ? items : items.slice(0, 6);
+
+      const visibleItems = expanded ? items : items.slice(0, 8);
 
       menuGrid.innerHTML = "";
 
@@ -1288,7 +1376,7 @@
         menuGrid.appendChild(createCard(item, index));
       });
 
-      viewMoreWrap.classList.toggle("hidden", expanded || items.length <= 6);
+      viewMoreWrap.classList.toggle("hidden", expanded || items.length <= 8);
     };
 
     const switchCategory = (category) => {
@@ -1297,6 +1385,7 @@
       }
 
       activeCategory = category;
+
       expanded = false;
 
       document.querySelectorAll(".category-btn").forEach((button) => {
@@ -1307,14 +1396,16 @@
 
       window.setTimeout(() => {
         renderMenu();
+
         menuGrid.classList.remove("switching");
-      }, 260);
+      }, 320);
     };
 
     menuToggle.addEventListener("click", () => {
       const isOpen = document.body.classList.toggle("menu-open");
 
       menuToggle.setAttribute("aria-expanded", String(isOpen));
+
       menuToggle.setAttribute("aria-label", isOpen ? "Close navigation menu" : "Open navigation menu");
     });
 
@@ -1334,6 +1425,7 @@
 
     viewMoreBtn.addEventListener("click", () => {
       expanded = true;
+
       renderMenu();
     });
 
@@ -1349,6 +1441,7 @@
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
               entry.target.classList.add("visible");
+
               revealObserver.unobserve(entry.target);
             }
           });
@@ -1361,14 +1454,36 @@
 
       revealItems.forEach((item, index) => {
         item.style.transitionDelay = `${Math.min(index % 4, 3) * 90}ms`;
+
         revealObserver.observe(item);
       });
     } else {
       revealItems.forEach((item) => item.classList.add("visible"));
     }
 
+    let ticking = false;
+
+    window.addEventListener(
+      "scroll",
+      () => {
+        if (!ticking) {
+          window.requestAnimationFrame(() => {
+            setIntroParallax();
+
+            ticking = false;
+          });
+
+          ticking = true;
+        }
+      },
+      { passive: true }
+    );
+
     renderCategories();
+
     renderMenu();
+
+    setIntroParallax();
   </script>
 </body>
 </html>
