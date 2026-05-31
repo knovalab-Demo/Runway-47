@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="RUNWAY47 is a luxury rooftop dining and after-dark destination with cinematic skyline views, refined cuisine, and elevated hospitality." />
+  <meta name="description" content="A luxury rooftop dining and after-dark destination with cinematic skyline views, refined cuisine, and elevated hospitality." />
   <title>RUNWAY47 | Luxury Rooftop Dining</title>
 
   <link rel="preconnect" href="https://i.pinimg.com" />
@@ -88,47 +88,21 @@
     .brand {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       flex: 0 0 auto;
-      gap: 12px;
+      width: auto;
       min-width: 0;
+      line-height: 0;
     }
 
-    .brand-mark {
-      width: 48px;
-      height: 48px;
-      overflow: hidden;
-      border: 1px solid rgba(227, 195, 122, 0.7);
-      border-radius: 50%;
-      background: #000;
-      box-shadow: 0 0 0 4px rgba(198, 161, 91, 0.08), 0 10px 32px rgba(0, 0, 0, 0.32);
-    }
-
-    .brand-mark img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .brand-text {
-      display: flex;
-      flex-direction: column;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-    }
-
-    .brand-name {
-      color: var(--ivory);
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 1.12rem;
-      font-weight: 500;
-      line-height: 1;
-    }
-
-    .brand-kicker {
-      margin-top: 4px;
-      color: var(--gold);
-      font-size: 0.58rem;
-      letter-spacing: 0.22em;
+    .brand-logo {
+      display: block;
+      width: auto;
+      height: 58px;
+      max-width: 170px;
+      object-fit: contain;
+      object-position: center;
+      filter: drop-shadow(0 10px 28px rgba(0, 0, 0, 0.38));
     }
 
     .nav-links {
@@ -680,6 +654,15 @@
       gap: 24px;
     }
 
+    .footer-logo {
+      height: 54px;
+      width: auto;
+      max-width: 160px;
+      object-fit: contain;
+      object-position: center;
+      filter: drop-shadow(0 10px 28px rgba(0, 0, 0, 0.38));
+    }
+
     .footer-links {
       display: flex;
       flex-wrap: wrap;
@@ -723,6 +706,11 @@
 
       .nav {
         width: min(100% - 28px, 1180px);
+      }
+
+      .brand-logo {
+        height: 52px;
+        max-width: 150px;
       }
 
       .nav-links {
@@ -801,6 +789,11 @@
         align-items: flex-start;
         flex-direction: column;
       }
+
+      .footer-logo {
+        height: 50px;
+        max-width: 150px;
+      }
     }
 
     @media (max-width: 700px) {
@@ -808,17 +801,9 @@
         background: rgba(0, 0, 0, 0.88);
       }
 
-      .brand-mark {
-        width: 42px;
-        height: 42px;
-      }
-
-      .brand-name {
-        font-size: 0.98rem;
-      }
-
-      .brand-kicker {
-        display: none;
+      .brand-logo {
+        height: 46px;
+        max-width: 130px;
       }
 
       .hero {
@@ -896,6 +881,11 @@
       .footer-links {
         gap: 14px;
       }
+
+      .footer-logo {
+        height: 46px;
+        max-width: 130px;
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -914,14 +904,8 @@
 <body>
   <header class="site-header">
     <nav class="nav" aria-label="Primary navigation">
-      <a class="brand" href="https://knovalab-demo.github.io/Runway-47/" aria-label="RUNWAY47 home">
-        <span class="brand-mark" aria-hidden="true">
-          <img src="https://i.pinimg.com/736x/ab/0e/8d/ab0e8dc27fd224d9d1fd99b6f33134f3.jpg" alt="" />
-        </span>
-        <span class="brand-text">
-          <span class="brand-name">RUNWAY47</span>
-          <span class="brand-kicker">Rooftop Dining</span>
-        </span>
+      <a class="brand" href="https://knovalab-demo.github.io/Runway-47/" aria-label="Home">
+        <img class="brand-logo" src="https://i.pinimg.com/736x/ab/0e/8d/ab0e8dc27fd224d9d1fd99b6f33134f3.jpg" alt="Website logo" />
       </a>
 
       <div class="nav-links" id="primary-navigation">
@@ -942,12 +926,12 @@
   </header>
 
   <main>
-    <section class="hero" aria-label="RUNWAY47 rooftop dining">
+    <section class="hero" aria-label="Luxury rooftop dining">
       <div class="hero-inner reveal">
         <p class="eyebrow">Luxury Rooftop Restaurant</p>
         <h1>Above the city, beyond expectation.</h1>
         <p class="hero-copy">
-          RUNWAY47 pairs skyline drama with refined plates, golden-hour cocktails, and late-night energy shaped for unforgettable evenings.
+          Skyline drama pairs with refined plates, golden-hour cocktails, and late-night energy shaped for unforgettable evenings.
         </p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="https://knovalab-demo.github.io/Runway-47/reservation/index.html">Reserve a Table</a>
@@ -974,10 +958,10 @@
       <div class="section-inner">
         <div class="about-grid">
           <div class="about-copy reveal">
-            <p class="eyebrow">About RUNWAY47</p>
+            <p class="eyebrow">About</p>
             <h2>A rooftop escape with a tailored sense of occasion.</h2>
             <p>
-              Designed for evenings that move effortlessly from sunset dining to after-hours celebration, RUNWAY47 brings together polished service, moody interiors, and a terrace made for the skyline.
+              Designed for evenings that move effortlessly from sunset dining to after-hours celebration, this rooftop destination brings together polished service, moody interiors, and a terrace made for the skyline.
             </p>
             <p>
               Every detail is composed to feel intimate, cinematic, and quietly luxurious.
@@ -996,7 +980,7 @@
 
           <div class="image-pair reveal">
             <figure class="image-card image-short">
-              <img src="https://i.pinimg.com/736x/bc/01/00/bc0100f8cf2a6e4e4b96ef6d2ca1402e.jpg" alt="Elegant rooftop dining table at RUNWAY47" loading="lazy" />
+              <img src="https://i.pinimg.com/736x/bc/01/00/bc0100f8cf2a6e4e4b96ef6d2ca1402e.jpg" alt="Elegant rooftop dining table" loading="lazy" />
             </figure>
             <figure class="image-card image-tall">
               <img src="https://i.pinimg.com/736x/b6/9d/c8/b69dc8fdbd2d4297f2724a669289aaa4.jpg" alt="Luxury rooftop restaurant atmosphere with warm lighting" loading="lazy" />
@@ -1044,7 +1028,7 @@
           </div>
 
           <figure class="image-card feature-frame reveal">
-            <img src="https://i.pinimg.com/736x/07/0e/e6/070ee66d65d1373a0fca4e9dff21571f.jpg" alt="RUNWAY47 after-dark rooftop bar with dramatic lighting" loading="lazy" />
+            <img src="https://i.pinimg.com/736x/07/0e/e6/070ee66d65d1373a0fca4e9dff21571f.jpg" alt="After-dark rooftop bar with dramatic lighting" loading="lazy" />
           </figure>
         </div>
       </div>
@@ -1059,7 +1043,7 @@
 
         <div class="gallery-grid reveal">
           <figure class="gallery-card">
-            <img src="https://i.pinimg.com/736x/b6/9d/c8/b69dc8fdbd2d4297f2724a669289aaa4.jpg" alt="Warm luxury dining room at RUNWAY47" loading="lazy" />
+            <img src="https://i.pinimg.com/736x/b6/9d/c8/b69dc8fdbd2d4297f2724a669289aaa4.jpg" alt="Warm luxury dining room" loading="lazy" />
             <figcaption class="gallery-caption">
               <span>Dining Room</span>
               <span>01</span>
@@ -1080,7 +1064,7 @@
             </figcaption>
           </figure>
           <figure class="gallery-card">
-            <img src="https://i.pinimg.com/736x/7b/4b/74/7b4b749486185fb600ca413959d1d6fa.jpg" alt="RUNWAY47 rooftop skyline atmosphere" loading="lazy" />
+            <img src="https://i.pinimg.com/736x/7b/4b/74/7b4b749486185fb600ca413959d1d6fa.jpg" alt="Rooftop skyline atmosphere" loading="lazy" />
             <figcaption class="gallery-caption">
               <span>Skyline Terrace</span>
               <span>04</span>
@@ -1121,7 +1105,7 @@
         <p class="eyebrow">Reservations</p>
         <h2>Your table above the city is waiting.</h2>
         <p>
-          Reserve for dinner, sunset drinks, private occasions, or a late-night rooftop experience at RUNWAY47.
+          Reserve for dinner, sunset drinks, private occasions, or a late-night rooftop experience.
         </p>
         <a class="btn btn-primary" href="https://knovalab-demo.github.io/Runway-47/reservation/index.html">Reserve Now</a>
       </div>
@@ -1130,14 +1114,8 @@
 
   <footer class="site-footer">
     <div class="footer-inner">
-      <a class="brand" href="https://knovalab-demo.github.io/Runway-47/" aria-label="RUNWAY47 home">
-        <span class="brand-mark" aria-hidden="true">
-          <img src="https://i.pinimg.com/736x/ab/0e/8d/ab0e8dc27fd224d9d1fd99b6f33134f3.jpg" alt="" loading="lazy" />
-        </span>
-        <span class="brand-text">
-          <span class="brand-name">RUNWAY47</span>
-          <span class="brand-kicker">Rooftop Dining</span>
-        </span>
+      <a class="brand" href="https://knovalab-demo.github.io/Runway-47/" aria-label="Home">
+        <img class="footer-logo" src="https://i.pinimg.com/736x/ab/0e/8d/ab0e8dc27fd224d9d1fd99b6f33134f3.jpg" alt="Website logo" loading="lazy" />
       </a>
 
       <div class="footer-links">
@@ -1148,7 +1126,7 @@
         <a href="https://knovalab-demo.github.io/Runway-47/reservation/index.html">Reservations</a>
       </div>
 
-      <p class="copyright">© 2026 RUNWAY47</p>
+      <p class="copyright">© 2026</p>
     </div>
   </footer>
 
